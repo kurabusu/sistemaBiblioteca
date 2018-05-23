@@ -1,22 +1,22 @@
 <?php
 
 class DBConexion {
-    private $USER = "";
+    private $USER = "root";
     private $PASSWORD = "";
     private $DSN = 'mysql:host=localhost;dbname=db_biblioteca;charset=utf8';
     
-    private static $instance;
+    private static $instancia;
     private $cnx;
     
     private function __construct() {
-        $this->cnx = new PDO($this->DSN, $this->$USER, $this->$PASSWORD, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
+        $this->cnx = new PDO($this->DSN, $this->USER, $this->PASSWORD, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
     }
     
-    public function getInstance(){
-        if (!self::$instance instanceof self ){
-            self::$instance = new self;
+    public static function getInstance(){
+        if (!self::$instancia instanceof self ){
+            self::$instancia = new self;
         }
-        return self::$instance;
+        return self::$instancia;
     }
     
     public function getConexion(){
