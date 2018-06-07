@@ -5,6 +5,9 @@ and open the template in the editor.
 */
 /* 
     Created on : 22-may-2018, 20:54:32
-    Author     : CETECOM
+    Author     : Ricardo Carcasson
 */
 
+.bxs-cb{
+    box-sizing: content-box;
+}

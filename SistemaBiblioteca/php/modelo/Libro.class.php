@@ -1,8 +1,14 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+class Libro{
+ 
+    private $id;
+    private $isbn;
+    private $titulo;
+    private $autor;
+    private $editorial;
+    private $annio;
+    private $cantidad;
+    private $categoria;
+    
+}
