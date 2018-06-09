@@ -1,18 +1,19 @@
 <?php
+include_once __DIR__.'/Perfil.class.php';
 class Usuario{
     private $id;
     private $username;
     private $password;
     private $estado;
-    private $perfil_id;
+    private $perfil;
     private $persona_id;
     
-    function __construct($id,$username,$password,$estado,$perfil_id,$persona_id) {
+    function __construct($id,$username,$password,$estado,$perfil,$persona_id) {
         $this->id = $id;
         $this->username = $username;
         $this->password = $password;
         $this->estado = $estado;
-        $this->perfil_id = $perfil_id;
+        $this->perfil = $perfil;
         $this->persona_id = $persona_id;
     }
     
@@ -56,8 +57,8 @@ class Usuario{
         $this->estado = $estado;
     }
     
-    function setPerfilId($perfil_id){
-        $this->perfil_id = $perfil_id;
+    function setPerfil($perfil){
+        $this->perfil = $perfil;
     }
     
     function setPersonaId($persona_id){
