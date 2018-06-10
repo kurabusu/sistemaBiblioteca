@@ -2,6 +2,7 @@
 include('php/base/header.php');
 include('php/base/menu.php');
 ?>
+<script src="js/libros.js" type="text/javascript"></script>
 <div class="row mt-2">
     <div class="col form-inline">
         <h2 class="h2">Libros</h2>  
@@ -13,10 +14,17 @@ include('php/base/menu.php');
     <div class="col-8"></div>
     <div class="col-4">
       
-        <form id="formConsulta" class="form-inline">
-            <div class="areaPaciente form-group">
+        <form id="formConsulta" class="form-inline" autocomplete="off">
+            <div class="form-group">
                 <label>Buscar Por: </label>
-                <input class="ml-3 form-control" id="txtBuscar" type="text" name="buscar" value="" required="" />
+                <select class="ml-3 form-control" id="cmboBuscar" name="cmboBuscar">
+                    <option value="" >Buscar</option>
+                    <option value="1" >ISBN</option>
+                    <option value="2" >Título</option>
+                    <option value="3" >Autor</option>
+                    <option value="4" >Editorial</option>   
+                </select>
+                <input class="ml-3 form-control" id="txtBuscar" type="text" name="buscar" value="" required="" disabled=""/>
 
                 <input class="ml-3 btn btn-info" id="consultar" type="button" name="consultar" value="Buscar" />
             </div>
@@ -37,7 +45,7 @@ include('php/base/menu.php');
                     <th> Año</th>
                     <th> Cantidad</th>
                     <th> Categoria</th>
-                    <th> Ppciones</th>
+                    <th> Opciones</th>
                 </tr>
             </thead>
             <tfoot>
