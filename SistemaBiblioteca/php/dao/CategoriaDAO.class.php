@@ -74,6 +74,7 @@ Class CategoriaDAO {
      * @param categoria $data
      */
     public function obtener($data){
+        
         $query = "SELECT id, codigo, descripcion FROM categoria where 1=1 ";
         
         if($data->getCodigo() !== null){

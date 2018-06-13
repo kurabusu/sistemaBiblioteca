@@ -26,6 +26,8 @@ $(document).ready(function (){
                     $("#txtDescripcionN").val("");
                 }else{
                     console.log("maal");
+                    $("#modalMensajes p.mensaje").html(arr.resultado);
+                    $("#modalMensajes").modal("show");
                 }
             }
         });
@@ -50,6 +52,7 @@ $(document).ready(function (){
                 console.log(arr)
                 if(arr.resultado == 1){
                     console.log("bien");
+                    
                 }else{
                     console.log("mal");
                 }
