@@ -6,7 +6,11 @@ Class categoria{
     private $codigo;
     private $descripcion;
     
-    
+    public function __construct($id, $codigo, $descripcion) {
+        $this->id = $id;
+        $this->codigo = $codigo;
+        $this->descripcion = $descripcion;
+    }
     public function getId(){
        return $this->id;
     }

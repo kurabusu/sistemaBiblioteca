@@ -11,4 +11,7 @@ class Libro{
     private $cantidad;
     private $categoria;
     
+    private $metodoBusqueda;
+    private $palabraBusqueda;
+    
 }

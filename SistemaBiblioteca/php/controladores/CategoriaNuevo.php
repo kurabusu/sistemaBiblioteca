@@ -1,19 +1,15 @@
 <?php
 include '../dao/CategoriaDAO.class.php';
 
-
-if($_SERVER['REQUEST_METHOD'] == 'PUT') {
-    echo json_encode($categoria);
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    echo json_encode(categoriaNuevo());
 } else {
-    echo "error";
+    echo "request_method incorreco";
 }
 
 function categoriaNuevo(){
-    parse_str(file_get_contents("php://input"),$put);
     
-    $categoria = new categoria();
-    $categoria->setCodigo($put["codigo"]);
-    $categoria->setDescripcion($put["descripcion"]);
+    $categoria = new categoria(null, $_POST["codigo"], $_POST["descripcion"]);
     
     $categoriaDao = new CategoriaDAO();
     $r = $categoriaDao->ingresar($categoria);

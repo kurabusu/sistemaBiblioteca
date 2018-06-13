@@ -42,15 +42,7 @@ include('php/base/menu.php');
                     <td colspan="8"></td>
                 </tr>
             </tfoot>
-            <tbody>
-                <tr>
-                    <td><label>9788490945445</label></td>
-                    <td><label>World of warcraft. cronicas 01</label></td>
-                    <td>
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalModificar">Modificar</button>
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDesactivar">Desactivar</button>
-                    </td>
-                </tr>
+            <tbody id="grilla">
                 
             </tbody>
         </table>
@@ -64,7 +56,7 @@ include('php/base/menu.php');
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Nueva Categor&iacute;a</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Nueva Categor&iacute;a</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -93,29 +85,50 @@ include('php/base/menu.php');
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modificar Categor&iacute;n</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Modificar Categor&iacute;a</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
           <form id="formLibroUsuario">
+                <input class="form-control" id="txtIdM" type="hidden" name="txtIdM" value=""/>
                 <div class="form-group areaPaciente">
                     <label for="txtCodigoM">C&oacute;digo: </label>
-                    <input class="form-control" id="txtCodigoM" type="text" name="txtCodigoM" value=""  />
+                    <input class="form-control" id="txtCodigoM" type="text" name="txtCodigoM" value="" readonly />
                 </div>
                 <div class="form-group areaPaciente">
                     <label for="txtDescripcionM">Descripci&oacute;n: </label>
                     <input class="form-control" id="txtDescripcionM" type="text" name="txtDescripcionM" value=""  />
                 </div>
-          </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-success">Modificar</button>
-      </div>
+            </form>
+        </div> 
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAprobarMod" >Modificar</button>
+        </div>
+        </div>
     </div>
-  </div>
+</div>
+
+<div class="modal fade" id="modalAprobarMod" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Desactivar libro</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>La información de la categor&iacute;a se modificara, quiere proceder?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal"  id="btnModificar" >continuar</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Modal desactivar / activar -->
