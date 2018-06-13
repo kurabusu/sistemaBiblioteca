@@ -1,11 +1,10 @@
 <?php
-require_once __DIR__.'/AbstractDAO.class.php';
 require_once __DIR__.'/../conexion/DBConexion.class.php';
 require_once __DIR__.'/../modelo/Usuario.class.php';
 require_once __DIR__.'/../modelo/Perfil.class.php';
 require_once __DIR__.'/../modelo/Persona.class.php';
 
-class UsuarioDAO implements AbstractDAO{
+class UsuarioDAO {
     private $conexion;
     
     function __construct() {

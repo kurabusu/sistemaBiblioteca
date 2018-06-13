@@ -1,5 +1,4 @@
 <?php
-require_once __DIR__.'/AbstractDAO.class.php';
 require_once __DIR__.'/../conexion/DBConexion.class.php';
 require_once __DIR__.'/../modelo/Usuario.class.php';
 require_once __DIR__.'/../modelo/Perfil.class.php';
@@ -74,8 +73,31 @@ class PersonaDAO {
     
     
 
-    public function getById($id) {
+    public function ObtenerPorId($id) {
+        $arUser = array();
+        $query = "SELECT id, rut, nombres, apellidos, email, telefono, estado from persona where id=?";
         
+        $preparedStatement = $this->conexion->prepare($query);
+        if ($preparedStatement != false){
+            $preparedStatement->bindParam(1,$id);
+            
+            $preparedStatement->execute();
+            foreach ($preparedStatement->fetchAll(PDO::FETCH_ASSOC) as $row){
+                $persona = new Persona($row['id'],
+                        $row['rut'],
+                        $row['nombres'],
+                        $row['apellidos'],
+                        $row['email'],
+                        $row['telefono'],
+                        $row['estado'],
+                        0,
+                        0);
+                array_push($arUser, $persona);
+            }
+        }else{
+            throw new Exception('No se pudo realizar la consulta'.$this->conexion->error);
+        }
+        return $arUser;
     }
 
     public function insert($element) {
