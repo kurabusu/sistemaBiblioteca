@@ -1,3 +1,23 @@
+function ModPer(id){
+    console.log("Desplegando información de usuario a modificar de ID " + id);
+    $.ajax({
+        url: "php/controladores/PersonaObtenerPorId.php",
+        method: 'GET',
+        dataType: 'json',
+        data: {'id':id},
+        success: function(data, textStatus, jqXHR){
+            console.log(data);
+            $.each(data,function(key, value){
+              $('#rutm').val(value.rut);
+              $('#nombresm').val(value.nombres);
+              $('#apellidosm').val(value.apellidos);
+              $('#telefonom').val(value.telefono);
+              $('#emailm').val(value.email);
+            })
+        }
+    })
+}
+
 $(document).ready(function(){
     $("#buscarPersona").click(function(){
         var claveBusqueda = $.trim($("#txtBuscarPersona").val());
@@ -34,8 +54,19 @@ $(document).ready(function(){
                     + '<td>' + value.email + '</td>'
                     + '<td>' + value.telefono + '</td>'
                     + '<td>' + value.perfil.descripcion + '</td>'
-                    + '<td>' + estado + '</td>';
-                    html+="</tr>";
+                    + '<td>' + estado + '</td>'
+                    + '<td><input class="btn btn-info" type="button" name="modificar" id="btnmodificar" data-toggle="modal" data-target="#modalModificar" value="Modificar" onClick="ModPer('+value.id+');">';
+                    if (value.estado==1){
+                        html+= '<input class="ml-2 btn btn-danger" type="button" name="desactivar" id="btndesactivar" value="Desactivar">'
+                        + '<input class="ml-2 btn btn-warning" type="button" name="bloquear" id="btnbloquear" value="Bloquear">'
+                    }else if (value.estado==2){
+                        html+= '<input class="ml-2 btn btn-danger" type="button" name="activar" id="btnactivar" value="Activar">'
+                        + '<input class="ml-2 btn btn-warning" type="button" name="desbloquear" id="btndesbloquear" value="Desbloquear">'                        
+                    }else if (value.estado==0){
+                        html+= '<input class="ml-2 btn btn-danger" type="button" name="activar" id="btnactivar" value="Activar">'
+                        + '<input class="ml-2 btn btn-warning" type="button" name="bloquear" id="btnbloquear" value="Bloquear">'                        
+                    }
+                    html+="</td></tr>";
                     $grillaResultados.append(html);
                 })
             }
