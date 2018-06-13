@@ -11,7 +11,7 @@ include('php/base/menu.php');
 </div>
 
 <div class="row mt-4">
-    <div class="col-8"></div>
+    <div class="col-6"></div>
     <div class="col-4">
       
         <form id="formConsulta" class="form-inline" autocomplete="off">
@@ -24,9 +24,9 @@ include('php/base/menu.php');
                     <option value="3" >Autor</option>
                     <option value="4" >Editorial</option>   
                 </select>
-                <input class="ml-3 form-control" id="txtBuscar" type="text" name="buscar" value="" required="" disabled=""/>
+                <input class="ml-3 form-control" id="txtBuscar" type="text" name="buscar" value="" required disabled=""/>
 
-                <input class="ml-3 btn btn-info" id="consultar" type="button" name="consultar" value="Buscar" />
+                <input class="ml-3 btn btn-info" id="consultar" type="button" name="consultar" value="Buscar" disabled=""/>
             </div>
             <div class="form-group error text-center">
                 <label class="error"></label>
@@ -65,7 +65,7 @@ include('php/base/menu.php');
                     <td>
                         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalNuevoPrestamo">Prestar</button>
                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalModificar">Modificar</button>
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDesactivar">Desactivar</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDesactivar">Eliminar</button>
                     </td>
                 </tr>
                 <tr>
@@ -189,17 +189,17 @@ include('php/base/menu.php');
     <div class="modal-dialog" >
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Desactivar libro</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar libro</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>Se va desactivar un libro, quiere proceder?</p>
+                <p>Se va a eliminar un libro, quiere proceder?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal"  data-toggle="modal" data-target="#modalDesactivarMensaje">Desactivar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"  data-toggle="modal" data-target="#modalDesactivarMensaje">Eliminar</button>
             </div>
         </div>
     </div>
@@ -209,13 +209,13 @@ include('php/base/menu.php');
     <div class="modal-dialog" >
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Desactivar libro</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar libro</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>El libro ha sido desactivado</p>
+                <p>El libro ha sido eliminado</p>
             </div>
             <div class="modal-footer">
             </div>
