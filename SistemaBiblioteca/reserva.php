@@ -2,6 +2,7 @@
 include('php/base/header.php');
 include('php/base/menu.php');
 ?>
+<script src="js/reserva.js"></script>
 <div class="row mt-2">
     <div class="col form-inline">
         <h2 class="h2">Reservas</h2>
@@ -44,22 +45,7 @@ include('php/base/menu.php');
                     <td colspan="7"></td>
                 </tr>
             </tfoot>
-            <tbody>
-                <tr>
-                    <td><label>Jose Tolosa </label></td>
-                    <td><label>World of warcraft. cronicas 01</label></td>
-                    <td><label>07-06-2018</label></td>
-                    <td>
-                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalNuevoPrestamo">Prestar</button>
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalCancelar">Cancelar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+            <tbody id="grilla">
             </tbody>
         </table>
     </div>
@@ -90,7 +76,7 @@ include('php/base/menu.php');
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-success">Guardar</button>
+        <button type="button" class="btn btn-success" id="btnGuardarNuevo">Guardar</button>
       </div>
     </div>
   </div>
