@@ -24,7 +24,7 @@ include('php/base/menu.php');
                     <option value="3" >Autor</option>
                     <option value="4" >Editorial</option>   
                 </select>
-                <input class="ml-3 form-control" id="txtBuscar" type="text" name="buscar" value="" required disabled=""/>
+                <input class="ml-3 form-control" id="txtBuscar" type="text" name="buscar" value="" disabled=""/>
 
                 <input class="ml-3 btn btn-info" id="consultar" type="button" name="consultar" value="Buscar" disabled=""/>
             </div>

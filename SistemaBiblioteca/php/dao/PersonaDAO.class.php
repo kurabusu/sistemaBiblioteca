@@ -100,8 +100,34 @@ class PersonaDAO {
         return $arUser;
     }
 
-    public function insert($element) {
+    public function ingresar($persona) {
+        $query = "insert into persona (rut, nombres, apellidos, email, telefono, estado) values "
+                . "(?,?,?,?,?,?)";
         
+        $preparedStatement = $this->conexion->prepare($query);
+        if($preparedStatement !== false){
+            $rut = $persona->getRut();
+            $nombres = $persona->getNombres();
+            $apellidos = $persona->getApellidos();
+            $telefono = $persona->getTelefono();
+            $mail = $persona->getEmail();
+            $estado = 1;
+            
+            $preparedStatement->bindParam(1,$rut);
+            $preparedStatement->bindParam(2,$nombres);
+            $preparedStatement->bindParam(3,$apellidos);
+            $preparedStatement->bindParam(4,$mail);
+            $preparedStatement->bindParam(5,$telefono);
+            $preparedStatement->bindParam(6,$estado);
+            
+            $preparedStatement->execute();
+            
+            $id = $this->conexion->lastInsertId();
+            
+            return $id;
+        }else{
+            throw new Exception('no se pudo preparar la consulta a la base datos: '.$this->conexion->error);
+        }
     }
 
     public function update($element) {
