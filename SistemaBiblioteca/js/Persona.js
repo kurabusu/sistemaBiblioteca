@@ -19,6 +19,30 @@ function ModPer(id){
 }
 
 $(document).ready(function(){
+    $("#btnConfirmarNuevo").click(function(){
+        console.log("Guardando nueva persona");
+        
+       /* $("#rut").val();
+        $("#nombres").val();
+        $("#apellidos").val();
+        $("#email").val();
+            'telefono' : $("#telefono").val(),'perfil' : $("#tipoperfil").val(),
+            'password' : $("#clave1").val()
+        */
+        $.ajax({
+            url: "php/controladores/PersonaNuevo.php",
+            method: 'POST',
+            dataType: 'json',
+            data: {'rut' : $("#rut").val(),'nombres' : $("#nombres").val(),
+            'apellidos' : $("#apellidos").val(), 'email' : $("#email").val(),
+            'telefono' : $("#telefono").val(),'perfil' : $("#tipoperfil").val(),
+            'password' : $("#clave1").val()},
+            success: function (data, textStatus, jqXHR) {
+                console.log(data);
+                $("#modalAgregarMensaje").modal('show');
+            }
+        })
+    })
     $("#buscarPersona").click(function(){
         var claveBusqueda = $.trim($("#txtBuscarPersona").val());
         
