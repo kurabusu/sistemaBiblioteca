@@ -1,5 +1,6 @@
 <?php
 require __DIR__. '/../dao/LibroDAO.class.php';
+require __DIR__. '/../dao/CategoriaDAO.class.php';
 
 if ($_SERVER['REQUEST_METHOD']=='GET'){
     echo json_encode(ObtenerListado($_GET["clave"]));
@@ -17,8 +18,8 @@ function ObtenerListado($isbn){
             "titulo"=>$arr[$i]->getTitulo(),
             "autor"=>$arr[$i]->getAutor(),
             "editorial"=>$arr[$i]->getEditorial(),
-            "año"=>$arr[$i]->getTelefono(),
-            "cantidad"=>$arr[$i]->getEstado(),
+            "año"=>$arr[$i]->getAnnio(),
+            "cantidad"=>$arr[$i]->getCantidad(),
             "categoria"=>$arr[$i]->getCategoria()
             
         ));
