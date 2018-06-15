@@ -12,13 +12,13 @@ include('php/base/menu.php');
 </div>
 
 <div class="row mt-2">
-    <div class="col-8"></div>
-    <div class="col-4">
+    <div class="col-7"></div>
+    <div class="col-5">
       
         <form id="formConsulta" class="form-inline">
-            <div class="areaPaciente form-group">
+            <div class="form-group col-12">
                 <label>Buscar Por: </label>
-                <input class="ml-3 form-control" id="txtBuscar" type="text" name="buscar" value="" required="" />
+                <input class="ml-3 form-control col-8" id="txtBuscar" type="text" name="buscar" value="" required="" placeholder="C&oacute;digo / Descripci&oacute;n" />
 
                 <input class="ml-3 btn btn-info" id="consultar" type="button" name="consultar" value="Buscar" />
             </div>
