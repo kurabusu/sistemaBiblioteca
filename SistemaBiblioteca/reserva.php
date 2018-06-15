@@ -242,12 +242,12 @@ include('php/base/menu.php');
                 <form id="formLibroUsuario">
                     <label>ISBN / Titulo / Autor </label>
                     <div class="form-group areaPaciente form-inline">
-                        <input class="form-control" id="rutR" type="text" name="rutR" placeholder="ISBN / Titulo / Autor " value=""  />
-                        <button type="button" class="btn btn-info">Buscar</button>
+                        <input class="form-control" id="txtBuscarLibro" type="text" name="rutR" placeholder="ISBN / Titulo / Autor " value=""  />
+                        <button type="button" class="btn btn-info" id="btnBuscarLibro">Buscar</button>
                     </div>
                 </form>
                 <div class="form-group areaPaciente">
-                    <table class="table">
+                    <table class="table" id="tableBuscarLibro">
                         <thead>
                             <tr>
                                 <th> ISBN</th>
@@ -255,7 +255,6 @@ include('php/base/menu.php');
                                 <th> Autor</th>
                                 <th> Editorial</th>
                                 <th> Año</th>
-                                <th> Cantidad</th>
                                 <th> Opción</th>
                             </tr>
                         </thead>
@@ -264,18 +263,8 @@ include('php/base/menu.php');
                                 <td colspan="8"></td>
                             </tr>
                         </tfoot>
-                        <tbody>
-                            <tr>
-                                <td><label>9788490945445</label></td>
-                                <td><label>World of warcraft. cronicas 01</label></td>
-                                <td><label>Varios autores</label></td>
-                                <td><label>Panini</label></td>
-                                <td><label>2016</label></td>
-                                <td><label>5</label></td>
-                                <td>
-                                <button type="button" class="btn btn-info"  data-dismiss="modal">Seleccionar</button>
-                                </td>
-                            </tr>
+                        <tbody class="grilla">
+                            
                         </tbody>
                     </table>
                 </div>

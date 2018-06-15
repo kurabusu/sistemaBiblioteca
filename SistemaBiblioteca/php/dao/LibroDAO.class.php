@@ -89,6 +89,16 @@ class LibroDAO {
             $query2 .= " l.titulo like concat(?,'%')";
         }
         
+        if($data->getAutor() != null){
+            if($query2 != '') $query2.=" or ";
+            $query2 .= " l.autor like concat(?,'%')";
+        }
+        
+        if($data->getEditorial() != null){
+            if($query2 != '') $query2.=" or ";
+            $query2 .= " l.editorial like concat(?,'%')";
+        }
+        
         if($data->getCategoria()->getDescripcion() != null){
             if($query2 != '') $query2.=" or ";
             $query2 .= " c.descripcion like concat(?,'%')";
@@ -112,6 +122,16 @@ class LibroDAO {
                 $tit = $data->getTitulo();
                 $preparedStatement->bindParam($i++,$tit);
             }
+            
+            if($data->getAutor() != null){
+                $aut = $data->getAutor();
+                $preparedStatement->bindParam($i++,$aut);
+            }
+            
+            if($data->getEditorial() != null){
+                $edi = $data->getEditorial();
+                $preparedStatement->bindParam($i++,$edi);
+            } 
 
             if($data->getCategoria()->getDescripcion() != null){
                 $cat = $data->getCategoria()->getDescripcion();

@@ -9,20 +9,27 @@ if ($_SERVER['REQUEST_METHOD']=='GET'){
 
 function ObtenerListado(){
     $categoria = new categoria(null, null, null);
+    
+    if(isset($_GET["categoria"]) && strlen($_GET["categoria"]) >0 ){
+        $categoria->setDescripcion($_GET["categoria"]);
+    }
+    
     $libro = new Libro(null, null, null, null, null, null, null, $categoria, null, null);
-    
-    
     
     if(isset($_GET["isbn"]) && strlen($_GET["isbn"]) >0){
         $libro->setIsbn($_GET["isbn"]);
     }
     
     if(isset($_GET["titulo"]) && strlen($_GET["titulo"]) >0){
-        $libro->setIsbn($_GET["titulo"]);
+        $libro->setTitulo($_GET["titulo"]);
     }
     
-    if(isset($_GET["categoria"]) && strlen($_GET["categoria"]) >0 ){
-        $libro->setIsbn($_GET["categoria"]);
+    if(isset($_GET["autor"]) && strlen($_GET["autor"]) >0 ){
+        $libro->setAutor($_GET["autor"]);
+    }
+    
+    if(isset($_GET["editorial"]) && strlen($_GET["editorial"]) >0 ){
+        $libro->setEditorial($_GET["editorial"]); 
     }
     
     
@@ -43,5 +50,5 @@ function ObtenerListado(){
             
         ));
     }
-    return $lista;
+    return array("resultado" => $lista);
 }
