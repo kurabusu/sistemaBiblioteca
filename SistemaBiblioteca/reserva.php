@@ -12,14 +12,14 @@ include('php/base/menu.php');
 
 <div class="row mt-2">
     
-    <div class="col-8">
+    <div class="col-7">
     </div>
-    <div class="col-4">
+    <div class="col-5">
       
         <form id="formConsulta" class="form-inline">
-            <div class="areaPaciente form-group">
+            <div class="form-group col-12">
                 <label>Buscar Por: </label>
-                <input class="ml-3 form-control" id="txtBuscar" type="text" name="buscar" value="" required="" />
+                <input class="ml-3 form-control col-8" id="txtBuscar" type="text" name="buscar" value="" required="" placeholder="Nombre persona / Titulo libro / Fecha"/>
 
                 <input class="ml-3 btn btn-info" id="consultar" type="button" name="btnBuscar" value="Buscar" />
             </div>
@@ -34,8 +34,8 @@ include('php/base/menu.php');
         <table class="table">
             <thead>
                 <tr>
-                    <th> Solicitante</th>
-                    <th> Libro</th>
+                    <th> Nombre persona</th>
+                    <th> Titulo libro</th>
                     <th> Fecha</th>
                     <th> Opciones</th>
                 </tr>
@@ -64,13 +64,15 @@ include('php/base/menu.php');
       </div>
       <div class="modal-body">
           <form id="formLibroUsuario">
-                <div class="form-group areaPaciente">
-                    <label>Rut usuario: </label>
-                    <input class="form-control" id="rutS" type="text" name="rutS" value=""  />
+                <label>Usuario: </label>
+                <div class="form-group form-inline">
+                    <input class="form-control" id="rutS" type="text" name="rutS" value="" readonly />
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalBuscarUsarios">Buscar</button>
                 </div>
-                <div class="form-group areaPaciente">
-                    <label>Libro: </label>
-                    <input class="form-control" id="anno" type="text" name="anno" value=""  />
+                <label>Libro: </label>
+                <div class="form-group form-inline">
+                    <input class="form-control" id="anno" type="text" name="anno" value=""  readonly />
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalBuscarLibro">Buscar</button>
                 </div>
           </form>
       </div>
@@ -171,6 +173,118 @@ include('php/base/menu.php');
     </div>
 </div>
 
+
+
+<!-- modal buscar usuarios -->
+<div class="modal fade" id="modalBuscarUsarios" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Buscar usuario</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="formLibroUsuario">
+                <label>Rut / nombre / apellido </label>
+                <div class="form-group areaPaciente form-inline">
+                    <input class="form-control" id="txtBuscarUsuario" type="text" name="txtBuscarUsuario" placeholder="Rut / nombre / apellido " value=""  />
+                    <button type="button" class="btn btn-info">Buscar</button>
+                </div>
+            </form>
+            <div class="form-group areaPaciente">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th> RUT</th>
+                            <th> Nombre</th>
+                            <th> Apellido</th>
+                            <th> Email</th>
+                            <th> Opción</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <td colspan="7"></td>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        <tr>
+                            <td><label>11111111-1</label></td>
+                            <td><label>Esteban</label></td>
+                            <td><label>Cigarra</label></td>
+                            <td><label>e.cigarra@correo.cl</label></td>
+                            <td>
+                                <button type="button" class="btn btn-info"  data-dismiss="modal">Seleccionar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>    
+        </div>
+        <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+
+<!-- modal buscar usuarios -->
+<div class="modal fade" id="modalBuscarLibro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Buscar libro</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formLibroUsuario">
+                    <label>ISBN / Titulo / Autor </label>
+                    <div class="form-group areaPaciente form-inline">
+                        <input class="form-control" id="rutR" type="text" name="rutR" placeholder="ISBN / Titulo / Autor " value=""  />
+                        <button type="button" class="btn btn-info">Buscar</button>
+                    </div>
+                </form>
+                <div class="form-group areaPaciente">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th> ISBN</th>
+                                <th> Titulo</th>
+                                <th> Autor</th>
+                                <th> Editorial</th>
+                                <th> Año</th>
+                                <th> Cantidad</th>
+                                <th> Opción</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <td colspan="8"></td>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr>
+                                <td><label>9788490945445</label></td>
+                                <td><label>World of warcraft. cronicas 01</label></td>
+                                <td><label>Varios autores</label></td>
+                                <td><label>Panini</label></td>
+                                <td><label>2016</label></td>
+                                <td><label>5</label></td>
+                                <td>
+                                <button type="button" class="btn btn-info"  data-dismiss="modal">Seleccionar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>  
 
 <?php
 include('php/base/footer.php');

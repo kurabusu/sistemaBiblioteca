@@ -11,7 +11,7 @@ include('php/base/menu.php');
     </div>
 </div>
 
-<div class="row mt-4">
+<div class="row mt-2">
     <div class="col-8"></div>
     <div class="col-4">
       

@@ -22,6 +22,20 @@ class ReservaDAO {
         $preparedStmt = $this->conexion->prepare($query);
         if($preparedStmt !== false){
             
+            $fecha = $data->getFecha_reserva();
+            $preparedStmt->bindParam(1, $fecha);
+            
+            $persona_id = $data->getPersona()->getId();
+            $preparedStmt->bindParam(2, $persona_id);
+            
+            $libro_id = $data->getLibro()->getId();
+            $preparedStmt->bindParam(3, $libro_id);
+            
+            $preparedStmt->execute();
+            
+            $c = $this->conexion->lastInsertId();
+            
+            $reserva = $c;
             
         }else{
             throw new Exception('no se pudo preparar la consulta a la base de datos: '.$this->conexion->error);
@@ -40,6 +54,21 @@ class ReservaDAO {
         
         $preparedStmt = $this->conexion->prepare($query);
         if($preparedStmt !== false){
+            
+            $fecha = $data->getFecha_reserva();
+            $preparedStmt->bindParam(1, $fecha);
+            
+            $persona_id = $data->getPersona()->getId();
+            $preparedStmt->bindParam(2, $persona_id);
+            
+            $libro_id = $data->getLibro()->getId();
+            $preparedStmt->bindParam(3, $libro_id);
+            
+            $preparedStmt->execute();
+            
+            $c = $preparedStmt->rowCount();
+            
+            $reserva= $c;
             
         }else{
             throw new Exception('no se pudo preparar la consulta a la base de datos: '.$this->conexion->error);

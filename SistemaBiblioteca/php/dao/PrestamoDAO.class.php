@@ -78,12 +78,16 @@ class PrestamoDAO {
     }
     
     public function obtener($data){
-        $query = "select ";
+        $query = "select * from prestamo";
         $prestamo;
         
         $preparedStmt = $this->conexion->prepare($query);
         if($preparedStmt !== false){
             
+            $preparedStmt->execute();
+            while ($row = $preparedStmt->fetch(PDO::FETCH_ASSOC)) {
+                
+            }
         }else{
             throw new Exception('no se pudo preparar la consulta a la base de datos: '.$this->conexion->error);
         }
