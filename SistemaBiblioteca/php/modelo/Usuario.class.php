@@ -34,7 +34,7 @@ class Usuario{
     }
     
     function getPerfilId(){
-        return $this->perfil_id;
+        return $this->perfil;
     }
     
     function getPersonaId(){

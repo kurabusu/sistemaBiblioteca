@@ -54,8 +54,37 @@ JOIN perfil pe on u.perfil_id=pe.id;";
         
     }
 
-    public function insert($element) {
+    /**
+     * 
+     * @param Usuario $usuario
+     * @return boolean
+     * @throws Exception
+     */
+    public function insertar($usuario) {
+        $query = "insert into usuario (username, password, estado, perfil_id, persona_id) values (?,?,?,?,?)";
         
+        $preparedStatement = $this->conexion->prepare($query);
+        if($preparedStatement !== false){
+            $username = $usuario->getUsername();
+            $password = password_hash($usuario->getPassword(), PASSWORD_DEFAULT);
+            $estado = $usuario->getEstado();
+            $perfil = $usuario->getPerfilId();
+            $idpersona = $usuario->getPersonaId();
+            
+            $preparedStatement->bindParam(1,$username);
+            $preparedStatement->bindParam(2,$password);
+            $preparedStatement->bindParam(3,$estado);
+            $preparedStatement->bindParam(4,$perfil);
+            $preparedStatement->bindParam(5,$idpersona);
+            
+            $preparedStatement->execute();
+            
+            return true;
+            
+        }else{
+            throw new Exception('no se pudo preparar la consulta a la base de datos: '.$this->conexion->error);
+        }
+        return false;
     }
 
     public function update($element) {
