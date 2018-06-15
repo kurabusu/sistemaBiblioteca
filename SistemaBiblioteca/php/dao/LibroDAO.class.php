@@ -64,31 +64,59 @@ class LibroDAO {
         
         $query = "update libro set";
     }
-    
-   /**
+
+    /**
      * 
+     * @param Libro $data
      * @return array
      * @throws Exception
      */
-    public function obtenerISBN($isbn){
+    public function obtener($data){
         $arUser = array();
-        $query= "SELECT l.id,"
-                . "l.isbn,"
-                . "l.titulo,"
-                . "l.autor,"
-                . "l.editorial,"
-                . "l.annio,"
-                . "l.cantidad,"
-                . "l.categoria_id,"
-                . "c.id,"
-                . "c.codigo,"
-                . "c.descripcion"
-                . "FROM libro l"
-                . "JOIN categoria c ON c.id = l.categoria_id"
-                . "WHERE l.isbn=?";
-        $preparedStatement = $this->conexion->prepare($query);
+        $query= "SELECT l.id, l.isbn, l.titulo, l.autor, l.editorial, l.annio,"
+                . " l.cantidad, l.categoria_id, c.id, c.codigo, c.descripcion"
+                . " FROM libro l "
+                . " LEFT JOIN categoria c ON c.id = l.categoria_id";
+        
+        $query2 = "";
+        
+        if($data->getIsbn() != null){
+            $query2 .= " l.isbn like concat(?,'%')";
+        }
+        
+        if($data->getTitulo() != null){
+            if($query2 != '') $query2.=" or ";
+            $query2 .= " l.titulo like concat(?,'%')";
+        }
+        
+        if($data->getCategoria()->getDescripcion() != null){
+            if($query2 != '') $query2.=" or ";
+            $query2 .= " c.descripcion like concat(?,'%')";
+        }
+                
+                
+        if($query2 != ''){
+            $query .= " WHERE ". $query2;
+            
+        }      
+        
+         $preparedStatement = $this->conexion->prepare($query);
         if($preparedStatement != false){
-            $preparedStatement->bindParam(1,$isbn);
+            $i = 1;
+            if($data->getIsbn() != null){
+                $isbn = $data->getIsbn();
+                $preparedStatement->bindParam($i++,$isbn);
+            }
+
+            if($data->getTitulo() != null){
+                $tit = $data->getTitulo();
+                $preparedStatement->bindParam($i++,$tit);
+            }
+
+            if($data->getCategoria()->getDescripcion() != null){
+                $cat = $data->getCategoria()->getDescripcion();
+                $preparedStatement->bindParam($i,$cat);
+            }
             
             $preparedStatement->execute();
             foreach ($preparedStatement->fetchAll(PDO::FETCH_ASSOC) as $row){
@@ -100,7 +128,8 @@ class LibroDAO {
                         $row['editorial'],
                         $row['annio'],
                         $row['cantidad'],
-                        $categoria);
+                        $categoria,
+                        null,null);
                 array_push($arUser, $libro);
             }
         }else{

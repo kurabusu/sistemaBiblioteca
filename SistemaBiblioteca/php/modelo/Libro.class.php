@@ -9,6 +9,10 @@ class Libro{
     private $editorial;
     private $annio;
     private $cantidad;
+    /**
+     *
+     * @var categoria 
+     */
     private $categoria;
     private $metodoBuscar;
     private $palabraBusca;

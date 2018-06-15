@@ -1,14 +1,33 @@
 <?php
-require __DIR__. '/../dao/LibroDAO.class.php';
-require __DIR__. '/../dao/CategoriaDAO.class.php';
+require '../dao/LibroDAO.class.php';
 
 if ($_SERVER['REQUEST_METHOD']=='GET'){
-    echo json_encode(ObtenerListado($_GET["clave"]));
+    echo json_encode(ObtenerListado() );
+}else{
+     echo "request_method incorreco";
 }
 
-function ObtenerListado($isbn){
+function ObtenerListado(){
+    $categoria = new categoria(null, null, null);
+    $libro = new Libro(null, null, null, null, null, null, null, $categoria, null, null);
+    
+    
+    
+    if(isset($_GET["isbn"]) && strlen($_GET["isbn"]) >0){
+        $libro->setIsbn($_GET["isbn"]);
+    }
+    
+    if(isset($_GET["titulo"]) && strlen($_GET["titulo"]) >0){
+        $libro->setIsbn($_GET["titulo"]);
+    }
+    
+    if(isset($_GET["categoria"]) && strlen($_GET["categoria"]) >0 ){
+        $libro->setIsbn($_GET["categoria"]);
+    }
+    
+    
     $p = new LibroDAO();
-    $arr = $p->ObtenerPorId($isbn);
+    $arr = $p->obtener($libro);
     
     $lista = array();
     for ($i = 0; $i<count($arr);$i++){
