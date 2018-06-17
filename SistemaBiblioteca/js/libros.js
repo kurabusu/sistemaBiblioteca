@@ -1,5 +1,16 @@
 $(document).ready(function(){
-   
+    
+    var $cmboBox = $('#categoria');                
+
+    jqXmlHttpRequest = $.getJSON("php/controladores/CategoriaObtenerListado.php", function (respuestaJSON) {      
+
+        $cmboBox.find('option').remove();
+        $cmboBox.append('<option value="" >--Seleccionar Categoria--</option>');
+
+        $.each(respuestaJSON, function (key, value) {
+            $cmboBox.append('<option value="' + value.id + '">' + value.descripcion + '</option>');
+        });
+    });    
    $('#cmboBuscar').change(function(){
       
        var $cmboBuscar = $('#cmboBuscar');
@@ -46,6 +57,8 @@ $(document).ready(function(){
                break;
        }
    });
+   
+  
    
 });
 

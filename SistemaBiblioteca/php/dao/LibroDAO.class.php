@@ -103,8 +103,7 @@ class LibroDAO {
             if($query2 != '') $query2.=" or ";
             $query2 .= " c.descripcion like concat(?,'%')";
         }
-                
-                
+                       
         if($query2 != ''){
             $query .= " WHERE ". $query2;
             
@@ -158,136 +157,7 @@ class LibroDAO {
         return $arUser;
     }
     
-    /**
-     * 
-     * @return array
-     * @throws Exception
-     */
-    public function obtenerTitulo($titulo){
-        $arUser = array();
-        $query= "SELECT l.id,"
-                . "l.isbn,"
-                . "l.titulo,"
-                . "l.autor,"
-                . "l.editorial,"
-                . "l.annio,"
-                . "l.cantidad,"
-                . "l.categoria_id,"
-                . "c.id,"
-                . "c.codigo,"
-                . "c.descripcion"
-                . "FROM libro l"
-                . "JOIN categoria c ON c.id = l.categoria_id"
-                . "WHERE l.titulo=?";
-        $preparedStatement = $this->conexion->prepare($query);
-        if($preparedStatement != false){
-            $preparedStatement->bindParam(1,$titulo);
-            
-            $preparedStatement->execute();
-            foreach ($preparedStatement->fetchAll(PDO::FETCH_ASSOC) as $row){
-                $categoria = new Categoria($row['id'],$row['codigo'], $row['descripcion']);
-                $libro = new Libro($row['id'],
-                        $row['isbn'],
-                        $row['titulo'],
-                        $row['autor'],
-                        $row['editorial'],
-                        $row['annio'],
-                        $row['cantidad'],
-                        $categoria);
-                array_push($arUser, $libro);
-            }
-        }else{
-            throw new Exception('No se pudo realizar la consulta'.$this->conexion->error);
-        }
-        return $arUser;
-    }
-    /**
-     * 
-     * @return array
-     * @throws Exception
-     */
-    public function obtenerAutor($autor){
-        $arUser = array();
-        $query= "SELECT l.id,"
-                . "l.isbn,"
-                . "l.titulo,"
-                . "l.autor,"
-                . "l.editorial,"
-                . "l.annio,"
-                . "l.cantidad,"
-                . "l.categoria_id,"
-                . "c.id,"
-                . "c.codigo,"
-                . "c.descripcion"
-                . "FROM libro l"
-                . "JOIN categoria c ON c.id = l.categoria_id"
-                . "WHERE l.autor=?";
-        $preparedStatement = $this->conexion->prepare($query);
-        if($preparedStatement != false){
-            $preparedStatement->bindParam(1,$autor);
-            
-            $preparedStatement->execute();
-            foreach ($preparedStatement->fetchAll(PDO::FETCH_ASSOC) as $row){
-                $categoria = new Categoria($row['id'],$row['codigo'], $row['descripcion']);
-                $libro = new Libro($row['id'],
-                        $row['isbn'],
-                        $row['titulo'],
-                        $row['autor'],
-                        $row['editorial'],
-                        $row['annio'],
-                        $row['cantidad'],
-                        $categoria);
-                array_push($arUser, $libro);
-            }
-        }else{
-            throw new Exception('No se pudo realizar la consulta'.$this->conexion->error);
-        }
-        return $arUser;
-    }
-    
-    /**
-     * 
-     * @return array
-     * @throws Exception
-     */
-    public function obtenerEditorial($editorial){
-        $arUser = array();
-        $query= "SELECT l.id,"
-                . "l.isbn,"
-                . "l.titulo,"
-                . "l.autor,"
-                . "l.editorial,"
-                . "l.annio,"
-                . "l.cantidad,"
-                . "l.categoria_id,"
-                . "c.id,"
-                . "c.codigo,"
-                . "c.descripcion"
-                . "FROM libro l"
-                . "JOIN categoria c ON c.id = l.categoria_id"
-                . "WHERE l.editorial=?";
-        $preparedStatement = $this->conexion->prepare($query);
-        if($preparedStatement != false){
-            $preparedStatement->bindParam(1,$editorial);
-            
-            $preparedStatement->execute();
-            foreach ($preparedStatement->fetchAll(PDO::FETCH_ASSOC) as $row){
-                $categoria = new Categoria($row['id'],$row['codigo'], $row['descripcion']);
-                $libro = new Libro($row['id'],
-                        $row['isbn'],
-                        $row['titulo'],
-                        $row['autor'],
-                        $row['editorial'],
-                        $row['annio'],
-                        $row['cantidad'],
-                        $categoria);
-                array_push($arUser, $libro);
-            }
-        }else{
-            throw new Exception('No se pudo realizar la consulta'.$this->conexion->error);
-        }
-        return $arUser;
-    }
+  
     /**
      * 
      * @param libro $data

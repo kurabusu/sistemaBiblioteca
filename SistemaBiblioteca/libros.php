@@ -3,6 +3,7 @@ include('php/base/header.php');
 include('php/base/menu.php');
 ?>
 <script src="js/libros.js" type="text/javascript"></script>
+<script src="js/categoria.js" type="text/javascript"></script>
 <div class="row mt-2">
     <div class="col form-inline">
         <h2 class="h2">Libros</h2>  
@@ -55,13 +56,13 @@ include('php/base/menu.php');
             </tfoot>
             <tbody>
                 <tr>
-                    <td><label>9788490945445</label></td>
-                    <td><label>World of warcraft. cronicas 01</label></td>
-                    <td><label>Varios autores</label></td>
-                    <td><label>Panini</label></td>
-                    <td><label>2016</label></td>
-                    <td><label>5</label></td>
-                    <td><label>Cómic</label></td>
+                    <td><label></label></td>
+                    <td><label></label></td>
+                    <td><label></label></td>
+                    <td><label></label></td>
+                    <td><label></label></td>
+                    <td><label></label></td>
+                    <td><label></label></td>
                     <td>
                         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalNuevoPrestamo">Prestar</button>
                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalModificar">Modificar</button>
@@ -119,7 +120,9 @@ include('php/base/menu.php');
                 </div>
                 <div class="form-group areaPaciente">
                     <label>Categor&iacute;a: </label>
-                    <input class="form-control" id="categoria" type="text" name="categoria" value=""  />
+                    <select class="form-control" id="categoria" name="categoria">
+                        <option value="" >--Seleccione una Categoria--</option>
+                    </select>
                 </div>
                 <div class="form-group areaPaciente">
                     <label>Cantidad: </label>

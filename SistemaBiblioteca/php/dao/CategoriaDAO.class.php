@@ -113,6 +113,29 @@ Class CategoriaDAO {
     
     /**
      * 
+     * @return array
+     * @throws Exception
+     */
+    public function obtenerII(){
+        $query = "SELECT id, codigo, descripcion FROM categoria";
+        //print_r($query);
+        $lista = [];
+        
+        $preparedStmt = $this->conexion->prepare($query);
+        if($preparedStmt !== false){
+            $preparedStmt->execute();
+            while ($row = $preparedStmt->fetch(PDO::FETCH_ASSOC)) {
+                    $d = new categoria($row["id"], $row["codigo"], $row["descripcion"]);
+                    array_push($lista, $d);
+            }
+        }else{
+            throw new Exception('no se pudo preparar la consulta a la base de datos: '.$this->conexion->error);
+        }
+        return $lista; 
+    }
+    
+    /**
+     * 
      * @param categoria $data
      */
     public function elmiminar($data){
