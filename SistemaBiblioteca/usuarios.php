@@ -6,7 +6,7 @@ include('php/base/menu.php');
 <div class="row mt-2">
     <div class="col form-inline">
         <h2 class="h2">Usuarios</h2>
-        <button class="ml-5 btn btn-success text-white" data-toggle="modal" data-target="#modalAgregar">Nuevo Usuario</button>
+        <button class="ml-5 btn btn-success text-white" data-toggle="modal" data-target="#modalAgregarNuevo">Nuevo Usuario</button>
     </div>
 </div>
 
@@ -144,7 +144,7 @@ include('php/base/menu.php');
 </div>
 
 <!-- Modal nuevo usuario -->
-<div class="modal fade" id="modalAgregar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalAgregarNuevo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -176,27 +176,23 @@ include('php/base/menu.php');
                     <input class="form-control" id="telefono" type="text" name="telefono" value=""  />
                 </div>
                 <div class="form-group">
-                    <label>Contraseña: </label>
-                    <input class="form-control" id="clave1" type="password" name="password1" />
+                    <label>Contrase&ntilde;a: </label>
+                    <input class="form-control" id="clave1" type="password" name="clave1" />
                 </div>
                 <div class="form-group">
-                    <label>Repetir contraseña: </label>
-                    <input class="form-control" id="clave2" type="password" name="password2" />
+                    <label>Repetir contrase&ntilde;a: </label>
+                    <input class="form-control" id="clave2" type="password" name="clave2" />
                 </div>
                 <div class="form-group">
                     <label>Perfil: </label>
                     <select name="perfil" id="tipoperfil" class="form-control">
                         <option value="" disabled>-- Seleccione tipo de perfil --</option>
-                        <option value="1">Administrador</option>
-                        <option value="2">Bibliotecario</option>
-                        <option value="3">Docente</option>
-                        <option value="4">Alumno</option>
                     </select>
                 </div>
           </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCancelarNuevo">Cancelar</button>
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalConfirmarNuevo" >Agregar</button>
       </div>
     </div>
@@ -219,7 +215,7 @@ include('php/base/menu.php');
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                <button type="button" class="btn btn-success" id="btnConfirmarNuevo">Si</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" id="btnConfirmarNuevo">Si</button>
             </div>
         </div>
     </div>
@@ -259,11 +255,31 @@ include('php/base/menu.php');
                 <p>Se ha agregado al nuevo usuario correctamente.</p>
             </div>
             <div class="modal-footer">
+                <button class="btn btn-success" type="button" data-dismiss="modal" id="btnaceptarnuevo">Aceptar</button>
             </div>
         </div>
     </div>
 </div>
 
+<!-- mensaje errores -->
+<div class="modal fade" id="modalMensajeErrores" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Errores detectados</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Se ha agregado al nuevo usuario correctamente.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" type="button" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <?php
 include('php/base/footer.php');

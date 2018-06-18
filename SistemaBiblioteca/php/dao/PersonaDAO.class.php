@@ -99,6 +99,33 @@ class PersonaDAO {
         }
         return $arUser;
     }
+    
+    public function VerificarRut($rut){
+        $query = "select count(id) as total from persona where rut=:rut";
+        
+        $preparedStatement = $this->conexion->prepare($query);
+        if($preparedStatement != false){
+            $preparedStatement->bindParam(':rut',$rut,PDO::PARAM_STR);
+            $preparedStatement->execute();
+            $total = $preparedStatement->fetch();
+            return $total["total"];
+        }
+        return -1;
+    }
+    
+    public function VerificarCorreo($correo){
+        $query = "select count(id) as total from persona where email=:email";
+        
+        $preparedStatement = $this->conexion->prepare($query);
+        
+        if($preparedStatement !== false){
+            $preparedStatement->bindParam(':email',$correo,PDO::PARAM_STR);
+            $preparedStatement->execute();
+            $total = $preparedStatement->fetch();
+            return $total["total"];
+        }
+        return -1;
+    }
 
     public function ingresar($persona) {
         $query = "insert into persona (rut, nombres, apellidos, email, telefono, estado) values "

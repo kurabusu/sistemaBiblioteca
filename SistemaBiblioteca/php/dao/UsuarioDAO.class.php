@@ -79,7 +79,7 @@ JOIN perfil pe on u.perfil_id=pe.id;";
             
             $preparedStatement->execute();
             
-            return true;
+            return $this->conexion->lastInsertId();
             
         }else{
             throw new Exception('no se pudo preparar la consulta a la base de datos: '.$this->conexion->error);
