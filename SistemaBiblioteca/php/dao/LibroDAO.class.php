@@ -17,7 +17,7 @@ class LibroDAO {
      * @param libro $data
      */
     public function ingresar($data){
-        $query = "insert into libro(id, isbn, titulo, autor, editorial, annio, cantidad, categoria_id) values(?,?,?,?,?,?,?,?)";
+        $query = "insert into libro(isbn, titulo, autor, editorial, annio, cantidad, categoria_id) values(?,?,?,?,?,?,?)";
         $libro = 0;
         
         $preparedStmt = $this->conexion->prepare($query);
@@ -62,7 +62,44 @@ class LibroDAO {
      */
     public function modificar($data){
         
-        $query = "update libro set";
+        $query = "update libro set isbn=?, titulo=?, autor=?, editorial=?, annio=?"
+                . ", cantidad=?, categoria_id=? WHERE id=?";
+        $l=0;
+        
+        $preparedStmt= $this->conexion->prepare($query);
+        if($preparedStmt !== false){
+            $isbn = $data->getIsbn();
+            $preparedStmt->bindParam(1, $isbn);
+            
+            $titulo = $data->getTitulo();
+            $preparedStmt->bindParam(2, $titulo);
+            
+            $autor = $data->getAutor();
+            $preparedStmt->bindParam(3, $autor);
+            
+            $editorial = $data->getEditorial();
+            $preparedStmt->bindParam(4, $editorial);
+            
+            $annio = $data->getAnnio();
+            $preparedStmt->bindParam(5, $annio);
+            
+            $cantidad = $data->getCantidad();
+            $preparedStmt->bindParam(6, $cantidad);
+            
+            $categoria = $data->getCategoria();
+            $preparedStmt->bindParam(7, $categoria);
+            
+            $id = $data->getId();
+            $preparedStmt->bindParam(8, $id);
+            $preparedStmt->execute();
+            
+            $c = $preparedStmt->rowCount();
+            
+            $l = $c;   
+        }else{
+            throw new Exception('no se pudo preparar la consulta a la base de datos: '.$this->conexion->error);
+        }
+        return $l;    
     }
 
     /**
@@ -108,7 +145,7 @@ class LibroDAO {
             $query .= " WHERE ". $query2;
             
         }      
-        
+       
          $preparedStatement = $this->conexion->prepare($query);
         if($preparedStatement != false){
             $i = 1;

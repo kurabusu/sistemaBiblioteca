@@ -4,7 +4,7 @@ require '../dao/LibroDAO.class.php';
 if ($_SERVER['REQUEST_METHOD']=='GET'){
     echo json_encode(ObtenerListado() );
 }else{
-     echo "request_method incorreco";
+     echo "request_method incorrecto";
 }
 
 function ObtenerListado(){
@@ -46,7 +46,10 @@ function ObtenerListado(){
             "editorial"=>$arr[$i]->getEditorial(),
             "año"=>$arr[$i]->getAnnio(),
             "cantidad"=>$arr[$i]->getCantidad(),
-            "categoria"=>$arr[$i]->getCategoria()
+            "categoria"=>array(
+                "idcategoria"=>$arr[$i]->getCategoria()->getId(),
+                "codigo"=>$arr[$i]->getCategoria()->getCodigo(),
+                "descripcion"=>$arr[$i]->getCategoria()->getDescripcion())
             
         ));
     }

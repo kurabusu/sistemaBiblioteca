@@ -9,23 +9,23 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 }
 
 function nuevoLibro(){
-    $libro = new Libro(null, null, null, null, null, null, null, null);
+    $libro = new Libro(null, null, null, null, null, null, null, null,null,null);
     $libroDAO = new LibroDAO();
     
     if(isset($_POST["isbn"]) && strlen($_POST["isbn"]) >= 10){
         if(is_numeric($_POST["isbn"])){
             $libro->setIsbn($_POST["isbn"]);
         }else{
-            return array("resultado" => "Ingrese sólo Números.");
+            return array("resultado" => "Ingrese s&0acute;lo N&uacute;meros.");
         }
     }else{
-        return array("resultado" => "El ISBN debe Tener 10 números o más.");
+        return array("resultado" => "El ISBN debe Tener 10 n&uacute;meros o m&aacute;s.");
     }
     
-    if(isset($_POST["titutlo"]) && strlen($_POST["titulo"])>0){
+    if(isset($_POST["titulo"]) && strlen($_POST["titulo"]) > 0){
         $libro->setTitulo($_POST["titulo"]);
     }else{
-        return array("resultado" => "Ingrese el título del Libro.");
+        return array("resultado" => "Ingrese el t&iacute;tulo del Libro.");
     }
     
     if(isset($_POST["autor"]) && strlen($_POST["autor"])>0){
@@ -46,17 +46,22 @@ function nuevoLibro(){
         return array("resultado" => "Ingrese el año de Edición.");
     }
     
-    if(isset($_POST["categoria"])==""){
-        $libro->setCategoria($_POST["categoria"]);
-    }else{
-        return array("resultado" => "Escoja una Categoria.");
-    }
-    
     if(isset($_POST["cantidad"])>0){
         $libro->setCantidad($_POST["cantidad"]);
     }else{
         return array("resultado" => "Ingrese la cantidad.");
     }
+    
+    if(isset($_POST["categoria"])!==""){
+        $libro->setCategoria($_POST["categoria"]);
+    }else{
+        return array("resultado" => "Escoja una Categor&iacute;a.");
+    }
+    
+    $arr = $libroDAO->obtener($libro);
+    
     $libroDAO = new LibroDAO();
     $nuevoLibro = $libroDAO->ingresar($libro);
+    
+    return array("resultado"=> $nuevoLibro);
 }
