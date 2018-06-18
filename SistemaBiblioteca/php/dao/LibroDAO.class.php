@@ -17,7 +17,7 @@ class LibroDAO {
      * @param libro $data
      */
     public function ingresar($data){
-        $query = "insert into libro(id, isbn, titulo, autor, editorial, annio, cantidad, categoria_id) values(?,?,?,?,?,?,?,?)";
+        $query = "insert into libro(isbn, titulo, autor, editorial, annio, cantidad, categoria_id) values(?,?,?,?,?,?,?)";
         $libro = 0;
         
         $preparedStmt = $this->conexion->prepare($query);
@@ -108,7 +108,7 @@ class LibroDAO {
             $query .= " WHERE ". $query2;
             
         }      
-        
+        print_r($query+$query2);
          $preparedStatement = $this->conexion->prepare($query);
         if($preparedStatement != false){
             $i = 1;

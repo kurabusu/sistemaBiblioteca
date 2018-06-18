@@ -3,7 +3,7 @@ include('php/base/header.php');
 include('php/base/menu.php');
 ?>
 <script src="js/libros.js" type="text/javascript"></script>
-<script src="js/categoria.js" type="text/javascript"></script>
+
 <div class="row mt-2">
     <div class="col form-inline">
         <h2 class="h2">Libros</h2>  
@@ -54,22 +54,8 @@ include('php/base/menu.php');
                     <td colspan="8"></td>
                 </tr>
             </tfoot>
-            <tbody>
-                <tr>
-                    <td><label></label></td>
-                    <td><label></label></td>
-                    <td><label></label></td>
-                    <td><label></label></td>
-                    <td><label></label></td>
-                    <td><label></label></td>
-                    <td><label></label></td>
-                    <td>
-                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalNuevoPrestamo">Prestar</button>
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalModificar">Modificar</button>
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDesactivar">Eliminar</button>
-                    </td>
-                </tr>
-                <tr>
+            <tbody id="grillaLibro">
+                 <tr>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -131,12 +117,32 @@ include('php/base/menu.php');
           </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-success">Guardar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCancelar">Cancelar</button>
+        <button type="button" class="btn btn-success" id="btnGuardarLibro">Guardar</button>
       </div>
     </div>
   </div>
 </div>
+
+<!-- mensaje agregar -->
+<div class="modal fade" id="modalAgregarMensaje" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Libro</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Se ha agregado un Libro correctamente.</p>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div class="modal fade" id="modalModificar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -245,7 +251,7 @@ include('php/base/menu.php');
                 </div>
                 <label>Libro: </label>
                 <div class="form-group areaPaciente form-inline">
-                    <input class="form-control" id="libro" type="text" name="libro" value="World of warcraft. cronicas 01"  />
+                    <input class="form-control" id="libro" type="text" name="libro" value=""  />
                     
                 </div>
           </form>

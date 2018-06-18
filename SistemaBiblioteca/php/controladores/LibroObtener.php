@@ -4,7 +4,7 @@ require '../dao/LibroDAO.class.php';
 if ($_SERVER['REQUEST_METHOD']=='GET'){
     echo json_encode(ObtenerListado() );
 }else{
-     echo "request_method incorreco";
+     echo "request_method incorrecto";
 }
 
 function ObtenerListado(){
