@@ -46,7 +46,10 @@ function ObtenerListado(){
             "editorial"=>$arr[$i]->getEditorial(),
             "año"=>$arr[$i]->getAnnio(),
             "cantidad"=>$arr[$i]->getCantidad(),
-            "categoria"=>$arr[$i]->getCategoria()
+            "categoria"=>array(
+                "idcategoria"=>$arr[$i]->getCategoria()->getId(),
+                "codigo"=>$arr[$i]->getCategoria()->getCodigo(),
+                "descripcion"=>$arr[$i]->getCategoria()->getDescripcion())
             
         ));
     }

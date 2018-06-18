@@ -10,9 +10,26 @@ $(document).ready(function(){
         $.each(respuestaJSON, function (key, value) {
             $cmboBox.append('<option value="' + value.id + '">' + value.descripcion + '</option>');
         });
+    });
+    
+    var $cmboBox = $('#categoriaM');                
+
+    jqXmlHttpRequest = $.getJSON("php/controladores/CategoriaObtenerListado.php", function (respuestaJSON) {      
+
+        $cmboBox.find('option').remove();
+        $cmboBox.append('<option value="" >--Seleccionar Categoria--</option>');
+
+        $.each(respuestaJSON, function (key, value) {
+            $cmboBox.append('<option value="' + value.id + '">' + value.descripcion + '</option>');
+        });
     });  
     
+    
     $("#btnCancelar").on("click", function(){
+        $('.modal-body input').val("");
+    });
+    
+    $("#btnCancelarM").on("click", function(){
         $('.modal-body input').val("");
     });
     
@@ -33,44 +50,8 @@ $(document).ready(function(){
         });
     });
     
-    $('#consultar').click(function (){
-       $metodoBusqueda = $('#cmboBuscar').val();
-       $palabraBusqueda = $('#txtBuscar').val();
-       console.log("Buscando Libros segun clave");
-       $("#grillaLibro").html("");
-       switch($metodoBusqueda){
-           case"1":
-            $.ajax({
-                "url": "php/controladores/LibroObtener.php",
-                "method": "GET",
-                "dataType": "JSON",
-                "data" : {
-                    "isbn": $palabraBusqueda
-                },
-                success: function (data, textStatus, jqXHR) {
-                    console.log(data);
-                    $.each(data, function(key, value){
-                        $("#grillaLibro").append('<tr>'
-                        +'<td>'+value.isbn+'</td>'
-                        +'<td>'+value.titulo+'</td>'
-                        +'<td>'+value.autor+'</td>'
-                        +'<td>'+value.editorial+'</td>'
-                        +'<td>'+value.anno+'</td>'
-                        +'<td>'+value.cantidad+'</td>'
-                        +'<td>'+value.categoria+'</td>'
-                        +'<td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalNuevoPrestamo">Prestar</button>'
-                        +'<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalModificar">Modificar</button>'
-                        +'<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDesactivar">Eliminar</button>'
-                        +'</td></tr>');   
-                    });
-                }
-            });
-            break;
-                default:
-                break;
-       }
-
-
+   $('#consultar').click(function (){
+       busqueda();
    });
    
    $('#cmboBuscar').change(function(){
@@ -82,10 +63,12 @@ $(document).ready(function(){
        if($cmboBuscar.val() !== ""){
            
            $txtBuscar.removeAttr('disabled');
+           $txtBuscar.val("");
            return;
          
        }else{
            $txtBuscar.attr('disabled','true');
+           $txtBuscar.val("");
            $btnBuscar.attr('disabled', 'true');
        }
    });
@@ -101,9 +84,190 @@ $(document).ready(function(){
        }
    });
    
-   
-   
-  
-   
+   //busqueda y modificacion
+   function busqueda(){
+       $metodoBusqueda = $('#cmboBuscar').val();
+       $palabraBusqueda = $('#txtBuscar').val();
+       console.log("Buscando Libros segun clave");
+       $("#grillaLibro").html("");
+       switch($metodoBusqueda){
+           case"1":
+                $.ajax({
+                    "url": "php/controladores/LibroObtener.php",
+                    "method": "GET",
+                    "dataType": "JSON",
+                    "data" : {
+                        "isbn": $palabraBusqueda
+                    },
+                    success: function (data, textStatus, jqXHR) {
+                        console.log(data);
+                        arr = data;
+                        listaLibros= arr.resultado;
+                        $.each(arr.resultado, function(key, value){
+                            $("#grillaLibro").append('<tr>'
+                            +'<td>'+value.isbn+'</td>'
+                            +'<td>'+value.titulo+'</td>'
+                            +'<td>'+value.autor+'</td>'
+                            +'<td>'+value.editorial+'</td>'
+                            +'<td>'+value.año+'</td>'
+                            +'<td>'+value.cantidad+'</td>'
+                            +'<td>'+value.categoria.descripcion+'</td>'
+                            +'<td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalNuevoPrestamo" id="btnPrestamo" >Prestar</button>'
+                            +'<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalModificar" id="btnModi" attr-index="'+key+'">Modificar</button>'
+                            +'<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDesactivar" id="btnEliminar" >Eliminar</button>'
+                            +'</td></tr>');   
+                        });
+                        
+                        $('#btnModi').on("click", function(){
+                            var x = $(this).attr("attr-index");
+                            console.log(listaLibros[x]);
+                            $("#idM").val(listaLibros[x]["id"]);
+                            $("#isbnM").val(listaLibros[x]["isbn"]);
+                            $("#tituloM").val(listaLibros[x]["titulo"]);
+                            $("#autorM").val(listaLibros[x]["autor"]);
+                            $("#editorialM").val(listaLibros[x]["editorial"]);
+                            $("#annoM").val(listaLibros[x]["año"]);
+                            //$("#categoriaM").val(listaLibros[x]["categoria.d"]);
+                            $("#cantidadM").val(listaLibros[x]["cantidad"]);
+                        });
+                    }
+                    
+                    
+                });
+            break;
+            
+           case"2":
+                $.ajax({
+                    "url": "php/controladores/LibroObtener.php",
+                    "method": "GET",
+                    "dataType": "JSON",
+                    "data" : {
+                        "titulo": $palabraBusqueda
+                    },
+                    success: function (data, textStatus, jqXHR) {
+                        console.log(data);
+                        arr = data;
+                        listaLibros= arr.resultado;
+                        $.each(arr.resultado, function(key, value){
+                            $("#grillaLibro").append('<tr>'
+                            +'<td>'+value.isbn+'</td>'
+                            +'<td>'+value.titulo+'</td>'
+                            +'<td>'+value.autor+'</td>'
+                            +'<td>'+value.editorial+'</td>'
+                            +'<td>'+value.año+'</td>'
+                            +'<td>'+value.cantidad+'</td>'
+                            +'<td>'+value.categoria.descripcion+'</td>'
+                            +'<td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalNuevoPrestamo" id="btnPrestamo" >Prestar</button>'
+                            +'<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalModificar" id="btnModi" attr-index="'+key+'">Modificar</button>'
+                            +'<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDesactivar" id="btnEliminar" >Eliminar</button>'
+                            +'</td></tr>');   
+                        });
+                        
+                        $('#btnModi').on("click", function(){
+                            var x = $(this).attr("attr-index");
+                            console.log(listaLibros[x]);
+                            $("#idM").val(listaLibros[x]["id"]);
+                            $("#isbnM").val(listaLibros[x]["isbn"]);
+                            $("#tituloM").val(listaLibros[x]["titulo"]);
+                            $("#autorM").val(listaLibros[x]["autor"]);
+                            $("#editorialM").val(listaLibros[x]["editorial"]);
+                            $("#annoM").val(listaLibros[x]["año"]);
+                            //$("#categoriaM").val(listaLibros[x]["categoria.d"]);
+                            $("#cantidadM").val(listaLibros[x]["cantidad"]);
+                        });
+                    }
+                });
+            break;
+                
+           case"3":
+                $.ajax({
+                    "url": "php/controladores/LibroObtener.php",
+                    "method": "GET",
+                    "dataType": "JSON",
+                    "data" : {
+                        "autor": $palabraBusqueda
+                    },
+                    success: function (data, textStatus, jqXHR) {
+                        console.log(data);
+                        arr = data;
+                        listaLibros= arr.resultado;
+                        $.each(arr.resultado, function(key, value){
+                            $("#grillaLibro").append('<tr>'
+                            +'<td>'+value.isbn+'</td>'
+                            +'<td>'+value.titulo+'</td>'
+                            +'<td>'+value.autor+'</td>'
+                            +'<td>'+value.editorial+'</td>'
+                            +'<td>'+value.año+'</td>'
+                            +'<td>'+value.cantidad+'</td>'
+                            +'<td>'+value.categoria.descripcion+'</td>'
+                             +'<td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalNuevoPrestamo" id="btnPrestamo" >Prestar</button>'
+                            +'<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalModificar" id="btnModi" attr-index="'+key+'">Modificar</button>'
+                            +'<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDesactivar" id="btnEliminar" >Eliminar</button>'
+                            +'</td></tr>');   
+                        });
+                        
+                        $('#btnModi').on("click", function(){
+                            var x = $(this).attr("attr-index");
+                            console.log(listaLibros[x]);
+                            $("#idM").val(listaLibros[x]["id"]);
+                            $("#isbnM").val(listaLibros[x]["isbn"]);
+                            $("#tituloM").val(listaLibros[x]["titulo"]);
+                            $("#autorM").val(listaLibros[x]["autor"]);
+                            $("#editorialM").val(listaLibros[x]["editorial"]);
+                            $("#annoM").val(listaLibros[x]["año"]);
+                            //$("#categoriaM").val(listaLibros[x]["categoria.d"]);
+                            $("#cantidadM").val(listaLibros[x]["cantidad"]);
+                        });
+                    }
+                });
+            break;
+            
+           case"4":
+                $.ajax({
+                     "url": "php/controladores/LibroObtener.php",
+                     "method": "GET",
+                     "dataType": "JSON",
+                     "data" : {
+                         "editorial": $palabraBusqueda
+                     },
+                     success: function (data, textStatus, jqXHR) {
+                         console.log(data);
+                         arr = data;
+                         listaLibros= arr.resultado;
+                         $.each(arr.resultado, function(key, value){
+                             $("#grillaLibro").append('<tr>'
+                             +'<td>'+value.isbn+'</td>'
+                             +'<td>'+value.titulo+'</td>'
+                             +'<td>'+value.autor+'</td>'
+                             +'<td>'+value.editorial+'</td>'
+                             +'<td>'+value.año+'</td>'
+                             +'<td>'+value.cantidad+'</td>'
+                             +'<td>'+value.categoria.descripcion+'</td>'
+                             +'<td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalNuevoPrestamo" id="btnPrestamo" >Prestar</button>'
+                            +'<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalModificar" id="btnModi" attr-index="'+key+'">Modificar</button>'
+                            +'<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDesactivar" id="btnEliminar" >Eliminar</button>'
+                            +'</td></tr>');    
+                         });
+                         
+                         $('#btnModi').on("click", function(){
+                            var x = $(this).attr("attr-index");
+                            console.log(listaLibros[x]);
+                            $("#idM").val(listaLibros[x]["id"]);
+                            $("#isbnM").val(listaLibros[x]["isbn"]);
+                            $("#tituloM").val(listaLibros[x]["titulo"]);
+                            $("#autorM").val(listaLibros[x]["autor"]);
+                            $("#editorialM").val(listaLibros[x]["editorial"]);
+                            $("#annoM").val(listaLibros[x]["año"]);
+                            //$("#categoriaM").val(listaLibros[x]["categoria.d"]);
+                            $("#cantidadM").val(listaLibros[x]["cantidad"]);
+                        });
+                     }
+                 });
+            break;
+            
+            default:
+            break;
+       }
+   }   
 });
 

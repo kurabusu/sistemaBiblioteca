@@ -155,39 +155,42 @@ include('php/base/menu.php');
       </div>
       <div class="modal-body">
           <form id="formLibroUsuario">
+                <input class="form-control" id="idM" type="hidden" name="idM" value=""/>
                 <div class="form-group areaPaciente">
                     <label>ISBN: </label>
-                    <input class="form-control" id="isbn" type="text" name="isbn" value=""  />
+                    <input class="form-control" id="isbnM" type="text" name="isbnM" value=""  />
                 </div>
                 <div class="form-group areaPaciente">
                     <label>Titulo: </label>
-                    <input class="form-control" id="titulo" type="text" name="titulo" value=""  />
+                    <input class="form-control" id="tituloM" type="text" name="tituloM" value=""  />
                 </div>
                 <div class="form-group areaPaciente">
                     <label>Autor: </label>
-                    <input class="form-control" id="autor" type="text" name="autor" value=""  />
+                    <input class="form-control" id="autorM" type="text" name="autorM" value=""  />
                 </div>
                 <div class="form-group areaPaciente">
                     <label>Editorial: </label>
-                    <input class="form-control" id="editorial" type="text" name="editorial" value=""  />
+                    <input class="form-control" id="editorialM" type="text" name="editorialM" value=""  />
                 </div>
                 <div class="form-group areaPaciente">
                     <label>A&ntilde;o: </label>
-                    <input class="form-control" id="anno" type="text" name="anno" value=""  />
+                    <input class="form-control" id="annoM" type="text" name="annoM" value=""  />
                 </div>
                 <div class="form-group areaPaciente">
                     <label>Categor&iacute;a: </label>
-                    <input class="form-control" id="categoria" type="text" name="categoria" value=""  />
+                    <select class="form-control" id="categoriaM" name="categoriaM">
+                        <option value="" >--Seleccione una Categoria--</option>
+                    </select>
                 </div>
                 <div class="form-group areaPaciente">
                     <label>Cantidad: </label>
-                    <input class="form-control" id="cantidad" type="number" name="cantidad" value=""  />
+                    <input class="form-control" id="cantidadM" type="number" name="cantidadM" value=""  />
                 </div>
           </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-success">Modificar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCancelarM">Cancelar</button>
+        <button type="button" class="btn btn-success" id="btnGuardaCambio">Modificar</button>
       </div>
     </div>
   </div>
