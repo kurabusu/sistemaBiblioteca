@@ -12,15 +12,15 @@ include('php/base/menu.php');
 
 <div class="row mt-4">
     
-    <div class="col-8">
+    <div class="col-7">
         
     </div>
-    <div class="col-4">
+    <div class="col-5">
       
         <form id="formConsulta" class="form-inline" onSubmit="return false">
-            <div class="areaUsuarios form-group">
+            <div class="form-group col-12">
                 <label>Buscar Por: </label>
-                <input class="ml-3 form-control" id="txtBuscarPersona" type="text" name="buscar" value="" required="" placeholder="Rut / Nombres / Apellidos"/>
+                <input class="ml-3 form-control col-8" id="txtBuscarPersona" type="text" name="buscar" value="" required="" placeholder="Rut / Nombres / Apellidos"/>
 
                 <input class="ml-3 btn btn-info" id="buscarPersona" type="button" name="btnBuscar" value="Buscar" />
             </div>
