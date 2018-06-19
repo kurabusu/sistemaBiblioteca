@@ -16,22 +16,19 @@ class ReservaDAO {
      * @param Reserva $data
      */
     public function ingresar($data){
-        $query = "insert into(fecha_reserva, persona_id, libro_id) values(?, ?, ?) ";
+        $query = "insert into reserva(fecha_reserva, persona_id, libro_id) values(DATE_ADD(NOW(), INTERVAL 3 DAY), ?, ?) ";
         $reserva = 0;
         
         $preparedStmt = $this->conexion->prepare($query);
         if($preparedStmt !== false){
             
-            $fecha = $data->getFecha_reserva();
-            $preparedStmt->bindParam(1, $fecha);
-            
             $persona_id = $data->getPersona()->getId();
-            $preparedStmt->bindParam(2, $persona_id);
+            $preparedStmt->bindParam(1, $persona_id);
             
             $libro_id = $data->getLibro()->getId();
-            $preparedStmt->bindParam(3, $libro_id);
+            $preparedStmt->bindParam(2, $libro_id);
             
-            $preparedStmt->execute();
+            $preparedStmt->execute(); 
             
             $c = $this->conexion->lastInsertId();
             
@@ -161,11 +158,19 @@ class ReservaDAO {
      * @param Reserva $data
      */
     public function eliminar($data){
-        $query = "";
+        $query = "delete from reserva where id = ?";
         $reserva = 0;
         
         $preparedStmt = $this->conexion->prepare($query);
         if($preparedStmt !== false){
+            $id = $data->getId();
+            $preparedStmt->bindParam(1, $id);
+            
+            $preparedStmt->execute();
+            
+            $c = $preparedStmt->rowCount();
+            
+            $reserva= $c;
             
         }else{
             throw new Exception('no se pudo preparar la consulta a la base de datos: '.$this->conexion->error);

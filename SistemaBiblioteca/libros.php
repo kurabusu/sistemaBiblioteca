@@ -3,6 +3,7 @@ include('php/base/header.php');
 include('php/base/menu.php');
 ?>
 <script src="js/libros.js" type="text/javascript"></script>
+<script src="js/Persona.js" type="text/javascript"></script>
 
 <div class="row mt-2">
     <div class="col form-inline">
@@ -138,6 +139,7 @@ include('php/base/menu.php');
                 <p>Se ha agregado un Libro correctamente.</p>
             </div>
             <div class="modal-footer">
+                <button class="btn btn-success" type="button" data-dismiss="modal" id="btnaceptarnuevo">Aceptar</button>
             </div>
         </div>
     </div>
@@ -190,10 +192,51 @@ include('php/base/menu.php');
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCancelarM">Cancelar</button>
-        <button type="button" class="btn btn-success" id="btnGuardaCambio">Modificar</button>
+        <button type="button" class="btn btn-success" id="btnModifi">Modificar</button>
       </div>
     </div>
   </div>
+</div>
+
+<!-- Modal confirmar modificacion -->
+<div class="modal fade" id="modalConfirmarNuevo" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar Libro</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Guardar cambios en este Libro?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" id="btnGuardaCambio">Si</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- mensaje modificar -->
+<div class="modal fade" id="modalModificarMensaje" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modificar libro</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Se ha modificado la informaci&oacute;n del Libro correctamente.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" type="button" data-dismiss="modal" id="btnaceptarCambios">Aceptar</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Modal desactivar / activar -->
@@ -207,11 +250,12 @@ include('php/base/menu.php');
                 </button>
             </div>
             <div class="modal-body">
+                <input class="form-control" id="idE" type="hidden" name="idE" value=""/>
                 <p>Se va a eliminar un libro, quiere proceder?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal"  data-toggle="modal" data-target="#modalDesactivarMensaje">Eliminar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"  data-toggle="modal" id="btneliminaLibro">Eliminar</button>
             </div>
         </div>
     </div>
@@ -230,6 +274,47 @@ include('php/base/menu.php');
                 <p>El libro ha sido eliminado</p>
             </div>
             <div class="modal-footer">
+                <button class="btn btn-success" type="button" data-dismiss="modal" id="btnCierra">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- mensaje agregar -->
+<div class="modal fade" id="modalAgregarMensaje" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Libro</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Se ha agregado al nuevo usuario correctamente.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" type="button" data-dismiss="modal" id="btnaceptarnuevo">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- mensaje errores -->
+<div class="modal fade" id="modalMensajeErrores" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Errores detectados</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Corrija los errores en la informaci&oacute;n.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" type="button" data-dismiss="modal">Aceptar</button>
             </div>
         </div>
     </div>
@@ -247,6 +332,7 @@ include('php/base/menu.php');
       </div>
       <div class="modal-body">
           <form id="formLibroUsuario">
+              <input class="form-control" id="idP" type="hidden" name="idP" value=""/>
                <label>Usuario : </label>
                 <div class="form-inline">
                     <input class="form-control" id="rutR" type="text" name="rutR" value=""  />
@@ -325,7 +411,7 @@ include('php/base/menu.php');
     <div class="modal-dialog" >
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Desactivar libro</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Nuevo Prestamo</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>

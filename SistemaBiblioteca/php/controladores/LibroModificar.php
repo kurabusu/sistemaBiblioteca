@@ -43,7 +43,7 @@ function modificarLibro(){
     }
     
     $libro = new Libro($put["id"], $put["isbn"], $put["titulo"], $put["autor"],
-            $put["editorial"], $put["anno"], $put["cantidad"], $put["categoria"]);
+            $put["editorial"], $put["anno"], $put["cantidad"], $put["categoria"], null, null);
     $libroDAO = new LibroDAO();
     $m = $libroDAO->modificar($libro);
     

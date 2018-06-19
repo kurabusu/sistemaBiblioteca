@@ -12,8 +12,8 @@ function  ReservaNuevo(){
     $persona = new Persona(null, null, null, null, null, null, null, null, null);
     $libro = new Libro(null, null, null, null, null, null, null, null, null, null);
     
-     if(isset($_POST["libro"]) && $_POST["libro"] > 0){
-        $libro->setId($_GET["libro"]);
+    if(isset($_POST["libro"]) && $_POST["libro"] > 0){
+        $libro->setId($_POST["libro"]);
     }else{
         return array("resultado" => "Falta el libro.");
     }
@@ -25,10 +25,6 @@ function  ReservaNuevo(){
     }
     
     $reserva = new Reserva(null, null, $persona, $libro);
-    
-    if(isset($_POST["fechaReserva"]) && strlen($_POST["fechaReserva"]) > 0){
-        $reserva->setFecha_reserva($_GET["fechaReserva"]);
-    }
     
     $r = $reservaDAO->ingresar($reserva);
     

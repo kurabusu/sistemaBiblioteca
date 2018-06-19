@@ -3,7 +3,11 @@ require __DIR__.'/../dao/PersonaDAO.class.php';
 if ($_SERVER['REQUEST_METHOD']=='GET'){
     echo json_encode(ObtenerListado($_GET["clave"]));
 }
-
+/**
+ * 
+ * @param String $clave para rut, nombre y apellido.
+ * @return array
+ */
 function ObtenerListado($clave){
     $p = new PersonaDAO();
     $arr = $p->Obtener($clave);

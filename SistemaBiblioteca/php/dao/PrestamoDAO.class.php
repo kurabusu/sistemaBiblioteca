@@ -16,19 +16,17 @@ class PrestamoDAO {
      * @param Prestamo $data
      */
     public function ingresar($data){
-        $query = "insert into prestamo(fecha_entrega, persona_id, libro_id) values(?,?,?)";
+        $query = "insert into prestamo(fecha_entrega, persona_id, libro_id) values(DATE_ADD(NOW(), INTERVAL 7 DAY),?,?)";
         $prestamo;
         
         $preparedStmt = $this->conexion->prepare($query);
         if($preparedStmt !== false){
-            $fecha_entrega = $data->getFechaEntrega();
-            $preparedStmt->bindParam(1, $fecha_entrega);
             
             $persona_id = $data->getPersona()->getId();
-            $preparedStmt->bindParam(2, $persona_id);
+            $preparedStmt->bindParam(1, $persona_id);
             
             $libro_id = $data->getLibro()->getId(); 
-            $preparedStmt->bindParam(3, $libro_id);
+            $preparedStmt->bindParam(2, $libro_id);
             
             $preparedStmt->execute();
             
