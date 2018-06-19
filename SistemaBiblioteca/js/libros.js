@@ -47,6 +47,10 @@ $(document).ready(function(){
         $("#modalConfirmarNuevo").modal('show');
     });
     
+    /*$("#btnCierra").click(function(){
+        $("#modal")
+    });*/
+    
     $("#btnGuardarLibro").on("click", function(){
         console.log("Ingresando nuevo Libro");
         $.ajax({
@@ -60,6 +64,30 @@ $(document).ready(function(){
             success: function (data, textStatus, jqXHR) {
                 console.log(data);
                 $("#modalAgregarMensaje").modal('show');
+            }
+        });
+    });
+    
+    $("#btneliminaLibro").on("click", function(){
+        console.log("Eliminando Libro");
+        $.ajax({
+            url: "php/controladores/LibroEliminar.php",
+            method: "DELETE",
+            dataType: "JSON",
+            data: {
+                'id': $("#idE")
+            },
+            success: function (data, textStatus, jqXHR) {
+                arr = data;
+                console.log(arr);
+                if(arr.resultado === 1){
+                    console.log("bien");
+                    $("#modalDesactivarMensaje").modal('show');   
+                }else{
+                    console.log("mal");
+                    $("#modalMensajeErrores p").html(arr.resultado);
+                    $("#modalMensajeErrores").modal('show');
+               }
             }
         });
     });
@@ -123,7 +151,7 @@ $(document).ready(function(){
        }
    });
    
-   //busqueda y modificacion
+   //busqueda, modificacion, prestamo y eliminar
    function busqueda(){
        $metodoBusqueda = $('#cmboBuscar').val();
        $palabraBusqueda = $('#txtBuscar').val();
@@ -196,9 +224,9 @@ $(document).ready(function(){
                             +'<td>'+value.año+'</td>'
                             +'<td>'+value.cantidad+'</td>'
                             +'<td>'+value.categoria.descripcion+'</td>'
-                            +'<td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalNuevoPrestamo" id="btnPrestamo" >Prestamo</button>'
+                            +'<td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalNuevoPrestamo" id="btnPrestamo" attr-index="'+key+'">Prestamo</button>'
                             +'<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalModificar" id="btnModi" attr-index="'+key+'">Modificar</button>'
-                            +'<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDesactivar" id="btnEliminar" >Eliminar</button>'
+                            +'<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDesactivar" id="btnEliminar" attr-index="'+key+'">Eliminar</button>'
                             +'</td></tr>');   
                         });
                         
@@ -213,6 +241,19 @@ $(document).ready(function(){
                             $("#annoM").val(listaLibros[x]["año"]);
                             //$("#categoriaM").val(listaLibros[x]["categoria.d"]);
                             $("#cantidadM").val(listaLibros[x]["cantidad"]);
+                        });
+                        
+                        $('#btnEliminar').on("click", function(){
+                            var i = $(this).attr("attr-index");
+                            console.log(listaLibros[i]);
+                            $("#idE").val(listaLibros[i]["id"]);
+                        });
+                        
+                        $('#btnPrestamo').on("click", function(){
+                            var i = $(this).attr("attr-index");
+                            console.log(listaLibros[i]);
+                            $("#idP").val(listaLibros[i]["id"]);
+                            $("#libro").val(listaLibros[i]["titulo"]);
                         });
                     }
                 });

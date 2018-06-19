@@ -3,6 +3,7 @@ include('php/base/header.php');
 include('php/base/menu.php');
 ?>
 <script src="js/libros.js" type="text/javascript"></script>
+<script src="js/Persona.js" type="text/javascript"></script>
 
 <div class="row mt-2">
     <div class="col form-inline">
@@ -249,11 +250,12 @@ include('php/base/menu.php');
                 </button>
             </div>
             <div class="modal-body">
+                <input class="form-control" id="idE" type="hidden" name="idE" value=""/>
                 <p>Se va a eliminar un libro, quiere proceder?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal"  data-toggle="modal" data-target="#modalDesactivarMensaje">Eliminar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"  data-toggle="modal" id="btneliminaLibro">Eliminar</button>
             </div>
         </div>
     </div>
@@ -272,6 +274,7 @@ include('php/base/menu.php');
                 <p>El libro ha sido eliminado</p>
             </div>
             <div class="modal-footer">
+                <button class="btn btn-success" type="button" data-dismiss="modal" id="btnCierra">Aceptar</button>
             </div>
         </div>
     </div>
@@ -329,6 +332,7 @@ include('php/base/menu.php');
       </div>
       <div class="modal-body">
           <form id="formLibroUsuario">
+              <input class="form-control" id="idP" type="hidden" name="idP" value=""/>
                <label>Usuario : </label>
                 <div class="form-inline">
                     <input class="form-control" id="rutR" type="text" name="rutR" value=""  />
@@ -407,7 +411,7 @@ include('php/base/menu.php');
     <div class="modal-dialog" >
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Desactivar libro</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Nuevo Prestamo</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
