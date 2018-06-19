@@ -136,10 +136,7 @@ class LibroDAO {
             $query2 .= " l.editorial like concat(?,'%')";
         }
         
-        if($data->getCategoria()->getDescripcion() != null){
-            if($query2 != '') $query2.=" or ";
-            $query2 .= " c.descripcion like concat(?,'%')";
-        }
+        
                        
         if($query2 != ''){
             $query .= " WHERE ". $query2;
@@ -169,10 +166,7 @@ class LibroDAO {
                 $preparedStatement->bindParam($i++,$edi);
             } 
 
-            if($data->getCategoria()->getDescripcion() != null){
-                $cat = $data->getCategoria()->getDescripcion();
-                $preparedStatement->bindParam($i,$cat);
-            }
+         
             
             $preparedStatement->execute();
             foreach ($preparedStatement->fetchAll(PDO::FETCH_ASSOC) as $row){

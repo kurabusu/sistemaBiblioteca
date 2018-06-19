@@ -16,6 +16,10 @@ function ObtenerListado(){
     
     $libro = new Libro(null, null, null, null, null, null, null, $categoria, null, null);
     
+    if(isset($_GET["id"])){
+        $libro->setId($_GET["id"]);
+    }
+    
     if(isset($_GET["isbn"]) && strlen($_GET["isbn"]) >0){
         $libro->setIsbn($_GET["isbn"]);
     }

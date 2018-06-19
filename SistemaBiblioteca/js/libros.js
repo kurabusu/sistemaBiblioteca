@@ -12,15 +12,15 @@ $(document).ready(function(){
         });
     });
     
-    var $cmboBox = $('#categoriaM');                
+    var $cmboBox2 = $('#categoriaM');                
 
     jqXmlHttpRequest = $.getJSON("php/controladores/CategoriaObtenerListado.php", function (respuestaJSON) {      
 
-        $cmboBox.find('option').remove();
-        $cmboBox.append('<option value="" >--Seleccionar Categoria--</option>');
+        $cmboBox2.find('option').remove();
+        $cmboBox2.append('<option value="" >--Seleccionar Categoria--</option>');
 
         $.each(respuestaJSON, function (key, value) {
-            $cmboBox.append('<option value="' + value.id + '">' + value.descripcion + '</option>');
+            $cmboBox2.append('<option value="' + value.id + '">' + value.descripcion + '</option>');
         });
     });  
     
@@ -31,6 +31,11 @@ $(document).ready(function(){
     
     $("#btnCancelarM").on("click", function(){
         $('.modal-body input').val("");
+    });
+    
+    $("#btnaceptarnuevo").click(function(){
+       $("#modalNuevo").modal('hide');
+       $('.modal-body input').val("");
     });
     
     $("#btnGuardarLibro").on("click", function(){
@@ -46,6 +51,29 @@ $(document).ready(function(){
             success: function (data, textStatus, jqXHR) {
                 console.log(data);
                 $("#modalAgregarMensaje").modal('show');
+            }
+        });
+    });
+    
+    $("#btnGuardaCambio").on("click", function(){
+        console.log("Modificando Información Libro");
+        $.ajax({
+            url: "php/controladores/LibroModificar.php",
+            method: "PUT",
+            dataType: "JSON",
+            data: { 'id': $("idM").val(), 'isbn':$("#isbnM").val(), 'titulo': $("#tituloM").val(),
+                'autor':$("#autorM").val(), 'editorial':$("#editorialM").val(),
+                'anno':$("#annoM").val(), 'categoria':$("#categoriaM").val(), 'cantidad':$("#cantidadM").val()
+            },
+            success : function (data, textStatus, jqXHR) {
+                arr = data;
+                console.log(arr)
+                if(arr.resultado == 1){
+                    console.log("bien");
+                    
+                }else{
+                    console.log("mal");
+                }    
             }
         });
     });
@@ -112,7 +140,7 @@ $(document).ready(function(){
                             +'<td>'+value.año+'</td>'
                             +'<td>'+value.cantidad+'</td>'
                             +'<td>'+value.categoria.descripcion+'</td>'
-                            +'<td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalNuevoPrestamo" id="btnPrestamo" >Prestar</button>'
+                            +'<td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalNuevoPrestamo" id="btnPrestamo" >Prestamo</button>'
                             +'<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalModificar" id="btnModi" attr-index="'+key+'">Modificar</button>'
                             +'<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDesactivar" id="btnEliminar" >Eliminar</button>'
                             +'</td></tr>');   
@@ -157,7 +185,7 @@ $(document).ready(function(){
                             +'<td>'+value.año+'</td>'
                             +'<td>'+value.cantidad+'</td>'
                             +'<td>'+value.categoria.descripcion+'</td>'
-                            +'<td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalNuevoPrestamo" id="btnPrestamo" >Prestar</button>'
+                            +'<td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalNuevoPrestamo" id="btnPrestamo" >Prestamo</button>'
                             +'<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalModificar" id="btnModi" attr-index="'+key+'">Modificar</button>'
                             +'<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDesactivar" id="btnEliminar" >Eliminar</button>'
                             +'</td></tr>');   
@@ -200,7 +228,7 @@ $(document).ready(function(){
                             +'<td>'+value.año+'</td>'
                             +'<td>'+value.cantidad+'</td>'
                             +'<td>'+value.categoria.descripcion+'</td>'
-                             +'<td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalNuevoPrestamo" id="btnPrestamo" >Prestar</button>'
+                             +'<td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalNuevoPrestamo" id="btnPrestamo" >Prestamo</button>'
                             +'<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalModificar" id="btnModi" attr-index="'+key+'">Modificar</button>'
                             +'<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDesactivar" id="btnEliminar" >Eliminar</button>'
                             +'</td></tr>');   
@@ -243,7 +271,7 @@ $(document).ready(function(){
                              +'<td>'+value.año+'</td>'
                              +'<td>'+value.cantidad+'</td>'
                              +'<td>'+value.categoria.descripcion+'</td>'
-                             +'<td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalNuevoPrestamo" id="btnPrestamo" >Prestar</button>'
+                             +'<td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalNuevoPrestamo" id="btnPrestamo" >Prestamo</button>'
                             +'<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalModificar" id="btnModi" attr-index="'+key+'">Modificar</button>'
                             +'<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDesactivar" id="btnEliminar" >Eliminar</button>'
                             +'</td></tr>');    
