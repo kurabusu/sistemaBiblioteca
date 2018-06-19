@@ -62,7 +62,7 @@ include('php/base/menu.php');
         </button>
       </div>
       <div class="modal-body">
-          <form id="formLibroUsuario">
+          <form id="formNuevaCategoria">
                 <div class="form-group areaPaciente">
                     <label for="txtCodigoN">C&oacute;digo: </label>
                     <input class="form-control" id="txtCodigoN" type="text" name="txtCodigoN" value=""  />
@@ -91,7 +91,7 @@ include('php/base/menu.php');
         </button>
       </div>
       <div class="modal-body">
-          <form id="formLibroUsuario">
+          <form id="formModificarCategoria">
                 <input class="form-control" id="txtIdM" type="hidden" name="txtIdM" value=""/>
                 <div class="form-group areaPaciente">
                     <label for="txtCodigoM">C&oacute;digo: </label>
@@ -105,7 +105,7 @@ include('php/base/menu.php');
         </div> 
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAprobarMod" >Modificar</button>
+            <button type="button" class="btn btn-success" id='btnValidarModCat' >Modificar</button>
         </div>
         </div>
     </div>

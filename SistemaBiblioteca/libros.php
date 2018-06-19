@@ -75,46 +75,54 @@ include('php/base/menu.php');
 
 <!-- Modal ingresar / modificar -->
 <div class="modal fade" id="modalNuevo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Nuevo libro</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
-      <div class="modal-body">
-          <form id="formLibroUsuario">
-                <div class="form-group areaPaciente">
-                    <label>ISBN: </label>
-                    <input class="form-control" id="isbn" type="text" name="isbn" value=""  />
+        </div>
+        <div class="modal-body">
+            <form id="formLibroUsuario">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group areaPaciente">
+                            <label>ISBN: </label>
+                            <input class="form-control" id="isbn" type="text" name="isbn" value=""  />
+                        </div>
+                        <div class="form-group areaPaciente">
+                            <label>Titulo: </label>
+                            <input class="form-control" id="titulo" type="text" name="titulo" value=""  />
+                        </div>
+                        <div class="form-group areaPaciente">
+                            <label>Autor: </label>
+                            <input class="form-control" id="autor" type="text" name="autor" value=""  />
+                        </div>
+                        <div class="form-group areaPaciente">
+                            <label>Editorial: </label>
+                            <input class="form-control" id="editorial" type="text" name="editorial" value=""  />
+                        </div>
+                      
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group areaPaciente">
+                            <label>A&ntilde;o: </label>
+                            <input class="form-control" id="anno" type="text" name="anno" value=""  />
+                        </div>
+                        <div class="form-group areaPaciente">
+                            <label>Categor&iacute;a: </label>
+                            <select class="form-control" id="categoria" name="categoria">
+                                <option value="" >--Seleccione una Categoria--</option>
+                            </select>
+                        </div>
+                        <div class="form-group areaPaciente">
+                            <label>Cantidad: </label>
+                            <input class="form-control" id="cantidad" min="1" type="number" name="cantidad" value=""  />
+                        </div>
+                  </div>
                 </div>
-                <div class="form-group areaPaciente">
-                    <label>Titulo: </label>
-                    <input class="form-control" id="titulo" type="text" name="titulo" value=""  />
-                </div>
-                <div class="form-group areaPaciente">
-                    <label>Autor: </label>
-                    <input class="form-control" id="autor" type="text" name="autor" value=""  />
-                </div>
-                <div class="form-group areaPaciente">
-                    <label>Editorial: </label>
-                    <input class="form-control" id="editorial" type="text" name="editorial" value=""  />
-                </div>
-                <div class="form-group areaPaciente">
-                    <label>A&ntilde;o: </label>
-                    <input class="form-control" id="anno" type="text" name="anno" value=""  />
-                </div>
-                <div class="form-group areaPaciente">
-                    <label>Categor&iacute;a: </label>
-                    <select class="form-control" id="categoria" name="categoria">
-                        <option value="" >--Seleccione una Categoria--</option>
-                    </select>
-                </div>
-                <div class="form-group areaPaciente">
-                    <label>Cantidad: </label>
-                    <input class="form-control" id="cantidad" type="number" name="cantidad" value=""  />
-                </div>
+              
           </form>
       </div>
       <div class="modal-footer">

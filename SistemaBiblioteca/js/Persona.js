@@ -279,6 +279,22 @@ $(document).ready(function(){
         })
     })
     
+    $("#btnValidarNuevo").on("click", function () {
+        var v = $("#formUsuarioNuevo").valid();
+        if(v){
+            $("#modalConfirmarNuevo").modal("show");
+            //data-toggle="modal" data-target="#modalConfirmarNuevo"
+        }
+    });
+    
+    $("#btnValidarMod").on("click", function () {
+        var v = $("#formUsuario").valid();
+        if(v){
+            $("#modalConfirmarModificar").modal("show")
+            //data-toggle="modal" data-target="#modalConfirmarModificar"
+        } 
+    })
+    
     $("#btnConfirmarNuevo").click(function(){
         console.log("Guardando nueva persona");
         

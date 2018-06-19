@@ -135,7 +135,7 @@ include('php/base/menu.php');
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalConfirmarModificar" >Modificar</button>
+        <button type="button" class="btn btn-success" id="btnValidarMod">Modificar</button>
       </div>
     </div>
   </div>
@@ -197,7 +197,7 @@ include('php/base/menu.php');
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCancelarNuevo">Cancelar</button>
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalConfirmarNuevo" >Agregar</button>
+        <button type="button" class="btn btn-success" id="btnValidarNuevo" >Agregar</button>
       </div>
     </div>
   </div>

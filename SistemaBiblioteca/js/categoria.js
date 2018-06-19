@@ -7,8 +7,14 @@ $(document).ready(function (){
     });
     
     $("#btnGuardarNuevo").on("click", function (){
-       var codigo = $("#txtCodigoN").val();
-       var descripcion = $("#txtDescripcionN").val();
+        
+        var v = $("#formNuevaCategoria").valid();
+        if(!v){
+            return false;
+        }
+        
+        var codigo = $("#txtCodigoN").val();
+        var descripcion = $("#txtDescripcionN").val();
    
          $.ajax({
             "url": "php/controladores/CategoriaNuevo.php",
@@ -31,6 +37,13 @@ $(document).ready(function (){
                 }
             }
         });
+    });
+    
+    $("#btnValidarModCat").on("click",function() {
+        var v = $("#formModificarCategoria").valid();
+        if(v){
+            $("#modalAprobarMod").modal("show");
+        }
     });
     
     $("#btnModificar").on("click", function (){

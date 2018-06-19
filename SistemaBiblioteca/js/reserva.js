@@ -130,6 +130,11 @@ $(document).ready(function () {
     })
     
     $("#btnGuardarNuevaReserva").on("click", function () {
+        var v = $("#formNuevaReserva").valid();
+        if(!v){
+            return false;
+        }
+         
         idPer = $("#modalNuevoReserva #mnrUsuario").attr("attr-id");
         idLibro = $("#modalNuevoReserva #mnrLibro").attr("attr-id");
         
@@ -212,7 +217,7 @@ $(document).ready(function () {
                     + '<td>'
                     + '    <button type="button" class="btn btn-info btnReservaPrestamo" data-toggle="modal" attr-index="'+index+'" data-target="#modalNuevoPrestamo">Prestar</button>'
                     + '    <button type="button" class="btn btn-danger btnReservaCancelar" data-toggle="modal" attr-index="'+index+'" data-target="#modalReservaEliminar">Eliminar</button>'
-                    + '</td>');
+                    + '</td></tr>');
                 });
                 
                 $(".btnReservaCancelar").on("click", function () {

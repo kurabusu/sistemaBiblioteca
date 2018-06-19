@@ -76,15 +76,24 @@ class PrestamoDAO {
     }
     
     public function obtener($data){
-        $query = "select * from prestamo";
-        $prestamo;
+        $query = "select pr.id, pr.fecha_entrega, pr.persona_id, p.rut, p.nombres, p.apellidos, "
+                . " pr.libro_id, l.isbn, l.titulo  "
+                . " from prestamo pr "
+                . " LEFT JOIN persona p on p.id = pr.persona_id "
+                . " LEFT JOIN libro l on l.id = pr.libro_id ";
+        $prestamo = array();
         
         $preparedStmt = $this->conexion->prepare($query);
         if($preparedStmt !== false){
             
             $preparedStmt->execute();
             while ($row = $preparedStmt->fetch(PDO::FETCH_ASSOC)) {
+                $persona = new Persona($row["persona_id"], $row["rut"], $row["nombres"], $row["apellidos"], null, null, null, null, null);
+                $libro = new Libro($row["libro_id"], $row["isbn"], $row["titulo"], null, null, null, null, null, null, null);
                 
+                $p = new Prestamo($row["id"], $row["fecha_entrega"], $persona, $libro);
+            
+                array_push($prestamo, $p); 
             }
         }else{
             throw new Exception('no se pudo preparar la consulta a la base de datos: '.$this->conexion->error);

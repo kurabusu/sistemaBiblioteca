@@ -62,22 +62,22 @@ include('php/base/menu.php');
         </button>
       </div>
       <div class="modal-body">
-          <form id="formLibroUsuario">
+          <form id="formNuevaReserva">
                 <label for="mnrUsuario">Usuario: </label>
-                <div class="form-group form-inline">
+                <div class="form-inline mb-3">
                     <input class="form-control col-9" id="mnrUsuario" type="text" name="mnrUsuario" value="" readonly />
-                    <button type="button" class="btn btn-info col-2"  data-toggle="modal" data-target="#modalBuscarUsarios">Buscar</button>
+                    <button type="button" class="btn btn-info col-2 ml-2"  data-toggle="modal" data-target="#modalBuscarUsarios">Buscar</button>
                 </div>
                 <label for="mnrLibro">Libro: </label>
-                <div class="form-group form-inline">
+                <div class="form-inline mb-3">
                     <input class="form-control col-9" id="mnrLibro" type="text" name="mnrLibro" value=""  readonly />
-                    <button type="button" class="btn btn-info col-2" data-toggle="modal" data-target="#modalBuscarLibro">Buscar</button>
+                    <button type="button" class="btn btn-info col-2 ml-2" data-toggle="modal" data-target="#modalBuscarLibro">Buscar</button>
                 </div>
           </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-success" id="btnGuardarNuevaReserva">Guardar</button>
+        <button type="button" class="btn btn-success" id="btnGuardarNuevaReserva">Guardar Reserva</button>
       </div>
     </div>
   </div>

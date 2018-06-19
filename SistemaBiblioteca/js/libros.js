@@ -52,6 +52,11 @@ $(document).ready(function(){
     });*/
     
     $("#btnGuardarLibro").on("click", function(){
+        var v = $("#formLibroUsuario").valid();
+        if(!v){
+            return false;
+        }
+        
         console.log("Ingresando nuevo Libro");
         $.ajax({
             url: "php/controladores/LibroNuevo.php",
@@ -93,6 +98,10 @@ $(document).ready(function(){
     });
     
     $("#btnGuardaCambio").on("click", function(){
+        var v = $("#formLibroUsuario").valid();
+        if(!v){
+            return false;
+        }
         console.log("Modificando Información Libro");
         $.ajax({
             url: "php/controladores/LibroModificar.php",

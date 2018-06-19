@@ -2,6 +2,7 @@
 include('php/base/header.php');
 include('php/base/menu.php');
 ?>
+<script src="js/prestamos.js"></script>
 <div class="row mt-2">
     <div class="col form-inline">
         <h2 class="h2">Prestamos</h2>
@@ -11,18 +12,14 @@ include('php/base/menu.php');
 
 <div class="row mt-2">
     
-    <div class="col-8"> </div>
-    <div class="col-4">
-      
+    <div class="col-7"> </div>
+    <div class="col-5">
         <form id="formConsulta" class="form-inline">
-            <div class="areaPaciente form-group">
+            <div class="form-group col-12">
                 <label>Buscar Por: </label>
-                <input class="ml-3 form-control" id="txtBuscar" type="text" name="buscar" value="" required="" />
+                <input class="ml-3 form-control col-8" id="txtBuscar" type="text" name="buscar" value="" required="" placeholder="Nombre persona / Titulo libro" />
 
                 <input class="ml-3 btn btn-info" id="consultar" type="button" name="btnBuscar" value="Buscar" />
-            </div>
-            <div class="form-group error text-center">
-                <label class="error"></label>
             </div>
         </form>
                 
@@ -43,22 +40,7 @@ include('php/base/menu.php');
                     <td colspan="4"></td>
                 </tr> 
             </tfoot>
-            <tbody>
-                <tr>
-                    <td><label>Antonio Torres</label></td>
-                    <td><label>World of warcraft. cronicas 01</label></td>
-                    <td><label>08-06-2018</label></td>
-                    <td>
-                        
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
+            <tbody id="grilla"></tbody>
         </table>
     </div>
 
@@ -76,22 +58,22 @@ include('php/base/menu.php');
         </button>
       </div>
       <div class="modal-body">
-          <form id="formLibroUsuario">
-               <label>Usuario : </label>
-                <div class="form-inline">
-                    <input class="form-control" id="rutR" type="text" name="rutR" value=""  />
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalBuscarUsarios">Buscar</button>
+          <form id="formNuevoPrestamo">
+                <label>Usuario : </label>
+                <div class="form-inline mb-3">
+                    <input class="form-control col-9" id="mnpUsuario" type="text" name="mnpUsuario" value="" readonly/>
+                    <button type="button" class="btn btn-info ml-2" data-toggle="modal" data-target="#modalBuscarUsarios">Buscar</button>
                 </div>
                 <label>Libro: </label>
-                <div class="form-group areaPaciente form-inline">
-                    <input class="form-control" id="libro" type="text" name="libro" value=""  />
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalBuscarLibro">Buscar</button>
+                <div class="form-inline mb-3">
+                    <input class="form-control col-9" id="mnpLibro" type="text" name="mnpLibro" value="" readonly/>
+                    <button type="button" class="btn btn-info ml-2" data-toggle="modal" data-target="#modalBuscarLibro">Buscar</button>
                 </div>
           </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-success" data-dismiss="modal" data-toggle="modal" data-target="#modalPrestamoMensaje">Guardar prestamo</button>
+        <button type="button" class="btn btn-success" id="btnGuardarNuevoPrestamo">Guardar prestamo</button>
       </div>
     </div>
   </div>
@@ -111,12 +93,12 @@ include('php/base/menu.php');
             <form id="formLibroUsuario">
                 <label>Rut / nombre / apellido </label>
                 <div class="form-group areaPaciente form-inline">
-                    <input class="form-control" id="txtBuscarUsuario" type="text" name="txtBuscarUsuario" placeholder="Rut / nombre / apellido " value=""  />
-                    <button type="button" class="btn btn-info">Buscar</button>
+                    <input class="form-control col-9" id="txtBuscarUsuario" type="text" name="txtBuscarUsuario" placeholder="Rut / nombre / apellido " value=""  />
+                    <button type="button" class="btn btn-info" id="btnBuscarUsuario">Buscar</button>
                 </div>
             </form>
             <div class="form-group areaPaciente">
-                <table class="table">
+                <table class="table" id="tableBuscarUsuario">
                     <thead>
                         <tr>
                             <th> RUT</th>
@@ -131,16 +113,8 @@ include('php/base/menu.php');
                             <td colspan="7"></td>
                         </tr>
                     </tfoot>
-                    <tbody>
-                        <tr>
-                            <td><label>11111111-1</label></td>
-                            <td><label>Esteban</label></td>
-                            <td><label>Cigarra</label></td>
-                            <td><label>e.cigarra@correo.cl</label></td>
-                            <td>
-                                <button type="button" class="btn btn-info"  data-dismiss="modal">Seleccionar</button>
-                            </td>
-                        </tr>
+                    <tbody class="grilla">
+                        
                     </tbody>
                 </table>
             </div>    
@@ -164,12 +138,12 @@ include('php/base/menu.php');
                 <form id="formLibroUsuario">
                     <label>ISBN / Titulo / Autor </label>
                     <div class="form-group areaPaciente form-inline">
-                        <input class="form-control" id="rutR" type="text" name="rutR" placeholder="ISBN / Titulo / Autor " value=""  />
-                        <button type="button" class="btn btn-info">Buscar</button>
+                        <input class="form-control col-9" id="txtBuscarLibro" type="text" name="rutR" placeholder="ISBN / Titulo / Autor " value=""  />
+                        <button type="button" class="btn btn-info" id="btnBuscarLibro">Buscar</button>
                     </div>
                 </form>
                 <div class="form-group areaPaciente">
-                    <table class="table">
+                    <table class="table" id="tableBuscarLibro">
                         <thead>
                             <tr>
                                 <th> ISBN</th>
@@ -186,18 +160,7 @@ include('php/base/menu.php');
                                 <td colspan="8"></td>
                             </tr>
                         </tfoot>
-                        <tbody>
-                            <tr>
-                                <td><label>9788490945445</label></td>
-                                <td><label>World of warcraft. cronicas 01</label></td>
-                                <td><label>Varios autores</label></td>
-                                <td><label>Panini</label></td>
-                                <td><label>2016</label></td>
-                                <td><label>5</label></td>
-                                <td>
-                                <button type="button" class="btn btn-info"  data-dismiss="modal">Seleccionar</button>
-                                </td>
-                            </tr>
+                        <tbody class="grilla">
                         </tbody>
                     </table>
                 </div>
