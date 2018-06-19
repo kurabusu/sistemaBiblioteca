@@ -14,7 +14,7 @@ include('php/base/menu.php');
     
     <div class="col-7"> </div>
     <div class="col-5">
-        <form id="formConsulta" class="form-inline">
+        <form id="formConsulta" class="form-inline" onSubmit="return false">
             <div class="form-group col-12">
                 <label>Buscar Por: </label>
                 <input class="ml-3 form-control col-8" id="txtBuscar" type="text" name="buscar" value="" required="" placeholder="Nombre persona / Titulo libro" />
@@ -172,19 +172,21 @@ include('php/base/menu.php');
 </div>
 
 <!-- prestamo mensaje -->
-<div class="modal fade" id="modalPrestamoMensaje" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modalValidacionDevolver" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" >
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Desactivar libro</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Devolución de libro</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>Se ha registrado el prestamo.</p>
+                <p>Se procedera con la devolución del libro. Quiere proceder?</p>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-success" id="btnValidarDevolver">Devolver libro</button>
             </div>
         </div>
     </div>

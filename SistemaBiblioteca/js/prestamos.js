@@ -127,6 +127,57 @@ $(document).ready(function () {
         if(!v){
             return false;
         }
+        
+        idPer = $("#mnpUsuario").attr("attr-id");
+        idLibro = $("#mnpLibro").attr("attr-id");
+        
+        $.ajax({
+            url: "php/controladores/PrestamoNuevo.php",
+            method: "POST",
+            dataType: 'json',
+            data: { 
+                persona: idPer,
+                libro: idLibro
+            },
+            success: function (data, textStatus, jqXHR) {
+                arr = data;
+                if(arr.resultado > 0){
+                    $("#modalMensajes .mensaje").html("Se ha ingresado el prestamo.");
+                    $("#modalMensajes").modal("show"); 
+                    
+                    $("#modalNuevoPrestamo").modal("hide");
+                    listar();
+                }else{
+                    $("#modalMensajes .mensaje").html("No se ha ingresado el prestamo. " + arr.resultado);
+                    $("#modalMensajes").modal("show"); 
+                }
+            }
+        });
+    });
+   
+    $("#btnValidarDevolver").on("click", function () {
+        id = $(this).attr("attr-id");
+        $.ajax({
+            url: "php/controladores/prestamoDevolver.php",
+            method: "DELETE",
+            dataType: 'json',
+            data: {
+                prestamo: id
+            },
+            success: function (data, textStatus, jqXHR) {
+                arr = data;
+                if(arr.resultado > 0){
+                    $("#modalMensajes .mensaje").html("Se ha procesado correctamente la devolución del libro.");
+                    $("#modalMensajes").modal("show"); 
+                    $("#modalValidacionDevolver").modal("hide");
+                    listar();
+                }else{
+                    $("#modalMensajes .mensaje").html("Ocurrio un problema con el procesado. " + arr.resultado);
+                    $("#modalMensajes").modal("show"); 
+                }
+                console.log(data);
+            }
+        })
     });
    
     function listar(){
@@ -154,7 +205,18 @@ $(document).ready(function () {
                     + '<button type="button" class="btn btn-danger btnDevolverLibro" data-toggle="modal" attr-index="'+index+'" data-target="#modalDevolverLibro">Devolver Libro</button>'
                     + '</td</tr>');
                 });
+                
+                $(".btnDevolverLibro").on("click", function () {
+                    index= $(this).attr("attr-index");
+                    $("#btnValidarDevolver").attr("attr-id",lista[index].id);
+                    $("#modalValidacionDevolver").modal("show");
+                });
             }
         });
     }
+    
+    $('#modalValidacionDevolver').on('hidden.bs.modal', function (e) {
+        $("#btnValidarDevolver").removeAttr("attr-id");
+    });
+    
 })

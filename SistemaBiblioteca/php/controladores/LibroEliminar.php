@@ -9,13 +9,16 @@ if($_SERVER['REQUEST_METHOD'] == 'DELETE') {
 
 function eliminarLibro(){
     parse_str(file_get_contents("php://input"),$delete);
-   
-    if(!isset($delete["id"])){
-        return array("resultado:{mensaje:'Falta el id.'}" );   
+    
+    print_r($delete);
+    if(isset($delete["libro"]) && $delete["libro"] >0){
+    } else {
+        return array("resultado" => 'Falta el libro.' );   
     }
-    $libro = new Libro($delete["id"], null, null, null,
-            null, null, null, null, null, null);
+    
+    $libro = new Libro($delete["libro"], null, null, null, null, null, null, null, null, null);
     $libroDAO = new LibroDAO();
     $m = $libroDAO->elmiminar($libro);
-    return ["resultado" => $m];
+    
+    return array("resultado" => $m);
 }
