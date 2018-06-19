@@ -136,5 +136,5 @@ JOIN perfil pe on u.perfil_id=pe.id;";
             return -1;
         }
     }
-
+    
 }

@@ -1,3 +1,7 @@
+<?php 
+session_start(); 
+include_once 'php/modelo/Persona.class.php';
+?>
 <!DOCTYPE html>
 <html lang="es">
     <head>

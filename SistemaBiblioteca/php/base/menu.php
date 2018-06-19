@@ -1,3 +1,6 @@
+<?php
+    $x = $_SESSION["usuario"];
+?>
 <div class="row">
     <div class="col pl-0">
         <nav class="navbar float-left pl-0">
@@ -13,7 +16,7 @@
         </nav>
         <div class="navbar float-right">
              <ul  class="nav ">
-                 <li class="nav-item"><label class="nav-link"> Usuario: </label></li>
+                 <li class="nav-item"><label class="nav-link"> Usuario: <?= $x["nombres"]." ".$x["apellidos"];?> </label></li>
                  <li class="nav-item"><a href="index.php" class="nav-link text-danger">Desconectar</a></li>
             </ul>
         </div>

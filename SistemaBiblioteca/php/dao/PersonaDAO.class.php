@@ -71,6 +71,49 @@ class PersonaDAO {
                 
     }
     
+    public function ObtenerLogin($usuario, $clave) {
+        $arUser = array();
+        $query = "SELECT p.id," 
+            ." p.rut, "
+            ." p.nombres, "
+            ." p.apellidos, "
+            ." p.email, "
+            ." p.telefono, "
+            ." u.perfil_id, "
+            ." u.password, "
+            ." p.estado from usuario u"
+            ." JOIN persona p on u.persona_id=p.id"
+            ." WHERE UPPER(u.username)=UPPER(?)";
+        $password="";
+        
+        $preparedStatement = $this->conexion->prepare($query);
+        if($preparedStatement != false){
+            $preparedStatement->bindParam(1,$usuario);
+            
+            $preparedStatement->execute();
+            foreach ($preparedStatement->fetchAll(PDO::FETCH_ASSOC) as $row){
+                $arUser = array('id'=>$row['id'],
+                        'rut'=>$row['rut'],
+                        'nombres'=>$row['nombres'],
+                        'apellidos'=>$row['apellidos'],
+                        'email'=>$row['email'],
+                        'telefono'=>$row['telefono'],
+                        'estado'=>$row['estado'],
+                        'perfil_id'=>$row['perfil_id'],
+                        'usuario'=>0);
+                $password=$row["password"];
+                
+                if (password_verify($clave, $password)){
+                    return $arUser;
+                }else{
+                    return null;
+                }                
+                
+            }
+        } else {
+            throw new Exception('No se pudo realizar la consulta'.$this->conexion->error);
+        }
+    }
     
 
     public function ObtenerPorId($id) {
