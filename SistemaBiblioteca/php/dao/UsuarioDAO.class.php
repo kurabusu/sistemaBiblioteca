@@ -113,5 +113,28 @@ JOIN perfil pe on u.perfil_id=pe.id;";
             return -1;
         }
     }
-
+    
+    /**
+     * 
+     * @param Usuario $element
+     */
+    public function ActualizarClave($element){
+        $query = "UPDATE usuario set password=? where persona_id=?";
+        
+        $preparedStatement = $this->conexion->prepare($query);
+        if($preparedStatement!=false){
+            $password = $element->getPassword();
+            $preparedStatement->bindParam(1,$password);
+            
+            $idpersona = $element->getPersonaId();
+            $preparedStatement->bindParam(2,$idpersona);
+            
+            $preparedStatement->execute();
+            return 0;
+        }else{
+            throw new Exception('no se pudo preparar la consulta: '.$this->conexion->error);
+            return -1;
+        }
+    }
+    
 }
