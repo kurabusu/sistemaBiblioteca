@@ -189,16 +189,18 @@ class LibroDAO {
      * @param libro $data
      */
     public function elmiminar($data){
-        $query = "DELETE FROM libro where id=?";
+        $query = "delete from libro where id=?";
         $libro=0;
         
         $preparedStmt= $this->conexion->prepare($query);
         
         if($preparedStmt !== false){
-           $id = $data->getId();
-           $preparedStmt->bindParam(1, $id);
-           $preparedStmt->execute();
-           
+            $id = $data->getId();
+            $preparedStmt->bindParam(1, $id);
+            $preparedStmt->execute();
+            $c = $preparedStmt->rowCount();
+            
+            $libro= $c;
         }else{
             throw new Exception('no se pudo preparar la consulta a la base de datos: '.$this->conexion->error);
         }

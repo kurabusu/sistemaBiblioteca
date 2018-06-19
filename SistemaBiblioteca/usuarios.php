@@ -17,7 +17,7 @@ include('php/base/menu.php');
     </div>
     <div class="col-4">
       
-        <form id="formConsulta" class="form-inline">
+        <form id="formConsulta" class="form-inline" onSubmit="return false">
             <div class="areaUsuarios form-group">
                 <label>Buscar Por: </label>
                 <input class="ml-3 form-control" id="txtBuscarPersona" type="text" name="buscar" value="" required="" placeholder="Rut / Nombres / Apellidos"/>

@@ -16,7 +16,7 @@ include('php/base/menu.php');
     <div class="col-6"></div>
     <div class="col-4">
       
-        <form id="formConsulta" class="form-inline" autocomplete="off">
+        <form id="formConsulta" class="form-inline" autocomplete="off" onSubmit="return false">
             <div class="form-group">
                 <label>Buscar Por: </label>
                 <select class="ml-3 form-control" id="cmboBuscar" name="cmboBuscar">
@@ -339,30 +339,28 @@ include('php/base/menu.php');
         </button>
       </div>
       <div class="modal-body">
-          <form id="formLibroUsuario">
-              <input class="form-control" id="idP" type="hidden" name="idP" value=""/>
-               <label>Usuario : </label>
-                <div class="form-inline">
-                    <input class="form-control" id="rutR" type="text" name="rutR" value=""  />
+          <form id="formNuevoPrestamo">
+                <label>Usuario : </label>
+                <div class="form-inline mb-3">
+                    <input class="form-control col-9" id="mnpUsuario" type="text" name="mnpUsuario" value="" readonly/>
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalBuscarUsarios">Buscar</button>
                 </div>
+                <div class="form-group mb-3"> 
                 <label>Libro: </label>
-                <div class="form-group areaPaciente form-inline">
-                    <input class="form-control" id="libro" type="text" name="libro" value=""  />
-                    
+                    <input class="form-control col-9" id="mnpLibro" type="text" name="mnpLibro" value="" readonly />
                 </div>
           </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-success" data-dismiss="modal" data-toggle="modal" data-target="#modalPrestamoMensaje">Guardar prestamo</button>
+        <button type="button" class="btn btn-success" id="btnNuevoPrestamo">Guardar prestamo</button>
       </div>
     </div>
   </div>
 </div>
   
 <!-- modal buscar usuarios -->
-<div class="modal fade modal-lg" id="modalBuscarUsarios" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalBuscarUsarios" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
         <div class="modal-header">
@@ -375,12 +373,12 @@ include('php/base/menu.php');
             <form id="formLibroUsuario">
                 <label>Rut / nombre / apellido </label>
                 <div class="form-group areaPaciente form-inline">
-                    <input class="form-control" id="txtBuscarUsuario" type="text" name="txtBuscarUsuario" placeholder="Rut / nombre / apellido " value=""  />
-                    <button type="button" class="btn btn-info">Buscar</button>
+                     <input class="form-control col-9" id="txtBuscarUsuario" type="text" name="txtBuscarUsuario" placeholder="Rut / nombre / apellido " value=""  />
+                    <button type="button" class="btn btn-info" id="btnBuscarUsuario">Buscar</button>
                 </div>
             </form>
             <div class="form-group areaPaciente">
-                <table class="table">
+                <table class="table" id="tableBuscarUsuario">
                     <thead>
                         <tr>
                             <th> RUT</th>
@@ -395,40 +393,13 @@ include('php/base/menu.php');
                             <td colspan="7"></td>
                         </tr>
                     </tfoot>
-                    <tbody>
-                        <tr>
-                            <td><label>11111111-1</label></td>
-                            <td><label>Esteban</label></td>
-                            <td><label>Cigarra</label></td>
-                            <td><label>e.cigarra@correo.cl</label></td>
-                            <td>
-                                <button type="button" class="btn btn-info"  data-dismiss="modal">Seleccionar</button>
-                            </td>
-                        </tr>
+                    <tbody class="grilla">
+                        
                     </tbody>
                 </table>
             </div>    
         </div>
         <div class="modal-footer"></div>
-        </div>
-    </div>
-</div>
-
-<!-- prestamo mensaje -->
-<div class="modal fade" id="modalPrestamoMensaje" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" >
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Nuevo Prestamo</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Se ha registrado el prestamo.</p>
-            </div>
-            <div class="modal-footer">
-            </div>
         </div>
     </div>
 </div>

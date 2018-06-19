@@ -38,8 +38,8 @@ $(document).ready(function () {
                             + '<td>'
                             + '<button type="button" class="btn btn-info btnSelUsuario" attr-index="'+index+'"  data-dismiss="modal">Seleccionar</button>'
                             + '</td>'
-                            + '</tr>')
-                })
+                            + '</tr>');
+                });
                 
                 $(".btnSelUsuario").on("click", function () {
                     index = $(this).attr("attr-index");
