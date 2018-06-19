@@ -190,5 +190,29 @@ class PersonaDAO {
         }
         return $resultado;
     }
+    
+    /**
+     * 
+     * @param Persona $element
+     */
+    public function CambiarEstado($element){
+        $query = "UPDATE persona set estado=? where id=?";
+        
+        $stmt = $this->conexion->prepare($query);
+        if($stmt!=false){
+            $estado = $element->getEstado();
+            $stmt->bindParam(1,$estado);
+            
+            $id = $element->getId();
+            $stmt->bindParam(2, $id);
+            
+            
+            $stmt->execute();
+            return 0;
+        }else{
+            throw new Exception('no se pudo preparar la consulta: '.$this->conexion->error);
+            return -1;
+        }
+    }
 
 }

@@ -20,7 +20,7 @@ include('php/base/menu.php');
         <form id="formConsulta" class="form-inline">
             <div class="areaUsuarios form-group">
                 <label>Buscar Por: </label>
-                <input class="ml-3 form-control" id="txtBuscarPersona" type="text" name="buscar" value="" required="" />
+                <input class="ml-3 form-control" id="txtBuscarPersona" type="text" name="buscar" value="" required="" placeholder="Rut / Nombres / Apellidos"/>
 
                 <input class="ml-3 btn btn-info" id="buscarPersona" type="button" name="btnBuscar" value="Buscar" />
             </div>
@@ -203,6 +203,41 @@ include('php/base/menu.php');
   </div>
 </div>
 
+<!-- Modal cambiar clave -->
+<div class="modal fade" id="modalCambiarClave" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cambiar contrase&ntilde;a</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form id="formCambiarClave">
+              <input type="hidden" name="idusuario" id="idusuario" value="">
+              <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                        <label>Nueva contrase&ntilde;a: </label>
+                        <input class="form-control" id="nuevapassword1" type="password" name="nuevapassword1" value="" />
+                    </div>
+                    <div class="form-group">
+                        <label>Repetir nueva contrase&ntilde;a: </label>
+                        <input class="form-control" id="nuevapassword2" type="password" name="nuevapassword2" value="" />
+                    </div>
+                  </div>
+              </div>
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCancelarClave">Cancelar</button>
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalConfirmarClave" >Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- Modal confirmar nuevo -->
 <div class="modal fade" id="modalConfirmarModificar" tabindex="-1" role="dialog" aria-hidden="true">
@@ -220,6 +255,27 @@ include('php/base/menu.php');
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                 <button type="button" class="btn btn-success" data-dismiss="modal" id="btnConfirmarModificar">Si</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal confirmar cambio de clave -->
+<div class="modal fade" id="modalConfirmarClave" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cambiar contraseña</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Está seguro de modificar la contrase&ntilde;a del usuario?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" id="btnConfirmarCambioClave">Si</button>
             </div>
         </div>
     </div>
@@ -267,6 +323,26 @@ include('php/base/menu.php');
     </div>
 </div>
 
+<!-- mensaje modificar clave-->
+<div class="modal fade" id="modalModificarClaveMensaje" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cambiar contrase&ntilde;a</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Se ha actualizado la contrase&ntilde;a del usuario.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" type="button" data-dismiss="modal" id="btnaceptarclave">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- mensaje agregar -->
 <div class="modal fade" id="modalAgregarMensaje" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" >
@@ -302,6 +378,123 @@ include('php/base/menu.php');
             </div>
             <div class="modal-footer">
                 <button class="btn btn-success" type="button" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal confirmar desactivacion -->
+<div class="modal fade" id="modalConfirmarDesactivacion" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Desactivar usuario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Est&aacute; seguro de desactivar al usuario?</p>
+            </div>
+            <form id="frmDesactivar">
+            <input type="hidden" id="usuariodesactivar" name="usuariodesactivar" value="">
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" id="btnConfirmarDesactivacion">Si</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal confirmar desactivacion -->
+<div class="modal fade" id="modalConfirmarActivacion" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Activar usuario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Est&aacute; seguro de activar al usuario?</p>
+            </div>
+            <form id="frmActivar">
+            <input type="hidden" id="usuarioactivar" name="usuarioactivar" value="">
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" id="btnConfirmarActivacion">Si</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal confirmar bloqueo -->
+<div class="modal fade" id="modalConfirmarBloqueo" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Bloquear usuario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Est&aacute; seguro de bloquear al usuario?</p>
+            </div>
+            <form id="frmBloquear">
+            <input type="hidden" id="usuariobloquear" name="usuariobloquear" value="">
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" id="btnConfirmarBloqueo">Si</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal confirmar desbloqueo -->
+<div class="modal fade" id="modalConfirmarDesbloqueo" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Desbloquear usuario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Est&aacute; seguro de desbloquear al usuario?</p>
+            </div>
+            <form id="frmDesbloquear">
+            <input type="hidden" id="usuariodesbloquear" name="usuariodesbloquear" value="">
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" id="btnConfirmarDesbloqueo">Si</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- mensaje cambio de estados usuario -->
+<div class="modal fade" id="modalMensajeEstado" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Desactivar usuario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Se ha desactivado al usuario correctamente.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" type="button" data-dismiss="modal" id="btnaceptardesactivacion">Aceptar</button>
             </div>
         </div>
     </div>
