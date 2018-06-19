@@ -13,7 +13,9 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         $_SESSION["usuario"] = $resultado;
         header("Location:bienvenido.php");
     }
-    
+}
+if($_SERVER["REQUEST_METHOD"]=='GET' && isset($_GET["action"]) && $_GET["action"]=="logout"){
+    session_destroy();
 }
 ?>
 
