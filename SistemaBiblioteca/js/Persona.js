@@ -163,6 +163,7 @@ $(document).ready(function(){
         $("#nuevapassword2").val("");
     })
     
+    
     $("#btnConfirmarDesbloqueo").click(function() {
         console.log("Desbloqueando usuario " + $("#usuariodesbloquear").val());
         $.ajax({

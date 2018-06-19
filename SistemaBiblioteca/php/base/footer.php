@@ -33,10 +33,11 @@
         </button>
       </div>
       <div class="modal-body">
-          <form id="formUsuario">
+          <form id="formMisDatos">
               <div class="row">
                   <div class="col-6">
-                      <input type="hidden" id="idusuariologin" name="id" value="<?=$usuario["id"];?>">                    
+                      <input type="hidden" id="idusuariologin" name="id" value="<?=$usuario["id"];?>">
+                      <input type="hidden" id="perfilusuariologin" name="perfil" value="<?=$usuario["perfil_id"];?>">
                       <div class="form-group">
                           <label>Rut: </label>
                           <input class="form-control" id="rutusuario" type="text" name="rut" value="<?=$usuario["rut"];?>" readonly />
@@ -65,11 +66,51 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-success" id="btnActualizarDatos">Actualizar</button>
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalConfirmarMisDatos" id="btnActualizarDatos">Actualizar</button>
       </div>
     </div>
   </div>
 </div>
-        
+
+<!-- Modal confirmar cambio de datos -->
+<div class="modal fade" id="modalConfirmarMisDatos" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Actualizar datos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Est&aacute; seguro de actualizar sus datos?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" id="btnConfirmarCambioDatos">Si</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- mensaje modificar -->
+<div class="modal fade" id="modalModificarDatosMensaje" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modificar datos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Su informaci&oacute;n personal se ha actualizado correctamente.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" type="button" data-dismiss="modal" id="btnaceptarmisdatos">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
     </body>
 </html>

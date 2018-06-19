@@ -17,6 +17,7 @@ include_once 'php/modelo/Persona.class.php';
         <script src="js/jquery.rut.js" ></script>
         <script src="js/jquery.validate.js" ></script>
         <script src="js/validacion.js" ></script> 
+        <script src="js/script.js" ></script> 
         
     </head>
     <body>
