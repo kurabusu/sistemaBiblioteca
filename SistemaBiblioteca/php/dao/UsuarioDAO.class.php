@@ -87,8 +87,31 @@ JOIN perfil pe on u.perfil_id=pe.id;";
         return false;
     }
 
+    /**
+     * 
+     * @param Usuario $element
+     */
     public function update($element) {
+        $query = "update usuario set username=?, perfil_id=? where persona_id=?";
         
+        $preparedStatement = $this->conexion->prepare($query);
+        if($preparedStatement !== false){
+            $username = $element->getUsername();
+            $preparedStatement->bindParam(1,$username);
+            
+            $perfil = $element->getPerfilId();
+            $preparedStatement->bindParam(2, $perfil);
+            
+            $personaid = $element->getPersonaId();
+            $preparedStatement->bindParam(3,$personaid);
+            
+            $preparedStatement->execute();
+            return 0;
+         
+        }else{
+            throw new Exception('no se pudo realizar la consulta: '.$this->conexion->error);
+            return -1;
+        }
     }
 
 }

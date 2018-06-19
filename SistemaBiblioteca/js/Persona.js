@@ -8,11 +8,13 @@ function ModPer(id){
         success: function(data, textStatus, jqXHR){
             console.log(data);
             $.each(data,function(key, value){
+              $('#idm').val(value.id);
               $('#rutm').val(value.rut);
               $('#nombresm').val(value.nombres);
               $('#apellidosm').val(value.apellidos);
               $('#telefonom').val(value.telefono);
               $('#emailm').val(value.email);
+              $('#tipoperfilm option[value="'+value.perfil+'"]').prop("selected",true);
             })
         }
     })
@@ -20,7 +22,7 @@ function ModPer(id){
 
 $(document).ready(function(){
     var $comboPerfil = $('#tipoperfil');
-    
+    var $comboPerfil2 = $('#tipoperfilm');
     //Obtener listado de perfiles de sistema
     $.ajax({
         url: "php/controladores/ObtenerPerfiles.php",
@@ -31,8 +33,11 @@ $(document).ready(function(){
             console.log(data);
             $comboPerfil.find('option').remove();
             $comboPerfil.append('<option value="0">--- Seleccione tipo de perfil ---</option>');
+            $comboPerfil2.find('option').remove();
+            $comboPerfil2.append('<option value="0">--- Seleccione tipo de perfil ---</option>');
             $.each(data,function(key,value){
               $comboPerfil.append('<option value="' +  value.id + '">' + value.descripcion + '</option>');  
+              $comboPerfil2.append('<option value="' +  value.id + '">' + value.descripcion + '</option>');  
             })
         }
                 
@@ -61,16 +66,39 @@ $(document).ready(function(){
         $("#clave2").val("");
         $("#tipoperfil").prop("selectedIndex",0).change();
     })
+    
+    $("#btnaceptarmodificar").click(function(){
+        $("#modalConfirmarModificar").modal('hide');
+        $("#modalModificar").modal('hide');
+        BuscarUsuario();
+    })
+    
+    $("#btnConfirmarModificar").click(function(){
+        console.log("Actualizando información de persona");
+        $.ajax({
+            url: "php/controladores/PersonaActualizar.php",
+            method: 'PUT',
+            dataType: 'json',
+            data: {'id' : $("#idm").val(),'nombres' : $("#nombresm").val(),
+                'apellidos' : $("#apellidosm").val(), 'email' : $("#emailm").val(),
+                'telefono' : $("#telefonom").val(), 'perfil' : $("#tipoperfilm").val()
+            },
+            success : function (data, textStatus, jqXHR){
+                resultadofinal = data;
+                if(resultadofinal["resultado"] == 0){
+                    $("#modalModificarMensaje").modal('show');
+                }else{
+                    $("#modalMensajeErrores p").html(resultadofinal.resultado);
+                    $("#modalMensajeErrores").modal('show');
+                }
+            }
+            
+        })
+    })
+    
     $("#btnConfirmarNuevo").click(function(){
         console.log("Guardando nueva persona");
         
-       /* $("#rut").val();
-        $("#nombres").val();
-        $("#apellidos").val();
-        $("#email").val();
-            'telefono' : $("#telefono").val(),'perfil' : $("#tipoperfil").val(),
-            'password' : $("#clave1").val()
-        */
         $.ajax({
             url: "php/controladores/PersonaNuevo.php",
             method: 'POST',
@@ -91,7 +119,9 @@ $(document).ready(function(){
             }
         })
     })
-    $("#buscarPersona").click(function(){
+    
+    function BuscarUsuario(){
+
         var claveBusqueda = $.trim($("#txtBuscarPersona").val());
         
         if(claveBusqueda === ""){
@@ -142,7 +172,10 @@ $(document).ready(function(){
                     $grillaResultados.append(html);
                 })
             }
-        })
+        })        
+    }
+    $("#buscarPersona").click(function(){
+        BuscarUsuario();
     })
 })
 
