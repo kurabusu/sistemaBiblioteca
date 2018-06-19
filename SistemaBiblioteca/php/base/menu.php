@@ -1,5 +1,11 @@
 <?php
-    $usuario = $_SESSION["usuario"];
+    $usuario = null;
+    
+    if(isset($_SESSION["usuario"])){
+        $usuario = $_SESSION["usuario"];
+    }else{
+        header("Location: index.php");
+    }
 ?>
 <div class="row">
     <div class="col pl-0">

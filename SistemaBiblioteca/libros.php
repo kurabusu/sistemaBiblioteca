@@ -12,25 +12,24 @@ include('php/base/menu.php');
     </div>
 </div>
 
-<div class="row mt-4">
+<div class="row mt-3">
     <div class="col-6"></div>
-    <div class="col-4">
-      
+    <div class="col-6">
         <form id="formConsulta" class="form-inline" autocomplete="off" onSubmit="return false">
-            <div class="form-group">
-                <label>Buscar Por: </label>
-                <select class="ml-3 form-control" id="cmboBuscar" name="cmboBuscar">
+            <div class="form-group  col-12">
+                <label class=" col-2">Buscar Por: </label>
+                <select class="ml-3 form-control col-2" id="cmboBuscar" name="cmboBuscar">
                     <option value="" >Buscar</option>
                     <option value="1" >ISBN</option>
                     <option value="2" >Título</option>
                     <option value="3" >Autor</option>
                     <option value="4" >Editorial</option>   
                 </select>
-                <input class="ml-3 form-control" id="txtBuscar" type="text" name="buscar" value="" disabled=""/>
+                <input class="ml-3 form-control col-5" id="txtBuscar" type="text" name="buscar" value="" disabled=""/>
 
-                <input class="ml-3 btn btn-info" id="consultar" type="button" name="consultar" value="Buscar" disabled=""/>
+                <input class="ml-3 btn btn-info col-2" id="consultar" type="button" name="consultar" value="Buscar" disabled=""/>
             </div>
-            <div class="form-group error text-center">
+            <div class="form-group error text-center"> 
                 <label class="error"></label>
             </div>
         </form>

@@ -236,33 +236,6 @@ $(document).ready(function(){
         })
     });
     
-    $("#btnLibroDesactivar").on("click", function () {
-        id = $(this).attr("attr-id");
-        
-        $.ajax({
-            url: "php/controladores/LibroEliminar.php",
-            method: "DELETE",
-            dataType: 'json',
-            data: {
-                libro: id
-            },
-            success: function (data, textStatus, jqXHR) {
-                arr = data;
-                console.log(arr);
-                if(arr > 0){
-                    $("#modalMensajes .mensaje").html("No se ha eliminado el libro. " + arr.resultado);
-                    $("#modalMensajes").modal("show"); 
-                    
-                    $("#modalLibroEliminar").modal("hide"); 
-                    $("#btnLibroEliminar").removeAttr("attr-id");
-                }else{
-                    $("#modalMensajes .mensaje").html("No se ha eliminado el libro. " + arr.resultado);
-                    $("#modalMensajes").modal("show"); 
-                }
-            }
-        })
-    });
-   
     //busqueda, modificacion, prestamo y eliminar
     function busqueda(){
        $metodoBusqueda = $('#cmboBuscar').val();
@@ -312,7 +285,6 @@ $(document).ready(function(){
                     +'<td>'
                     +'<button type="button" class="btn btn-info btnPrestamo" data-toggle="modal" data-target="#modalNuevoPrestamo" attr-index="'+key+'" >Prestamo</button>'
                     +'<button type="button" class="btn btn-warning ml-2 mr-2 btnModi" data-toggle="modal" data-target="#modalModificar" attr-index="'+key+'">Modificar</button>'
-                    //+'<button type="button" class="btn btn-danger btnEliminar" data-toggle="modal" data-target="#modalLibroDesactivar" attr-index="'+key+'" >Desactivar</button>'
                     +'</td></tr>');   
                 }); 
 
