@@ -2,6 +2,7 @@
 include('php/base/header.php');
 include('php/base/menu.php');
 ?>
+<script src="js/prestamos.js"></script>
 <div class="row mt-2">
     <div class="col form-inline">
         <h2 class="h2">Prestamos</h2>
@@ -11,18 +12,14 @@ include('php/base/menu.php');
 
 <div class="row mt-2">
     
-    <div class="col-8"> </div>
-    <div class="col-4">
-      
+    <div class="col-7"> </div>
+    <div class="col-5">
         <form id="formConsulta" class="form-inline">
-            <div class="areaPaciente form-group">
+            <div class="form-group col-12">
                 <label>Buscar Por: </label>
-                <input class="ml-3 form-control" id="txtBuscar" type="text" name="buscar" value="" required="" />
+                <input class="ml-3 form-control col-8" id="txtBuscar" type="text" name="buscar" value="" required="" placeholder="Nombre persona / Titulo libro" />
 
                 <input class="ml-3 btn btn-info" id="consultar" type="button" name="btnBuscar" value="Buscar" />
-            </div>
-            <div class="form-group error text-center">
-                <label class="error"></label>
             </div>
         </form>
                 
@@ -43,22 +40,7 @@ include('php/base/menu.php');
                     <td colspan="4"></td>
                 </tr> 
             </tfoot>
-            <tbody>
-                <tr>
-                    <td><label>Antonio Torres</label></td>
-                    <td><label>World of warcraft. cronicas 01</label></td>
-                    <td><label>08-06-2018</label></td>
-                    <td>
-                        
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
+            <tbody id="grilla"></tbody>
         </table>
     </div>
 
@@ -79,12 +61,12 @@ include('php/base/menu.php');
           <form id="formLibroUsuario">
                <label>Usuario : </label>
                 <div class="form-inline">
-                    <input class="form-control" id="rutR" type="text" name="rutR" value=""  />
+                    <input class="form-control" id="mnpUsuario" type="text" name="mnpUsuario" value="" readonly/>
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalBuscarUsarios">Buscar</button>
                 </div>
                 <label>Libro: </label>
                 <div class="form-group areaPaciente form-inline">
-                    <input class="form-control" id="libro" type="text" name="libro" value=""  />
+                    <input class="form-control" id="mnpLibro" type="text" name="mnpLibro" value="" readonly/>
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalBuscarLibro">Buscar</button>
                 </div>
           </form>
