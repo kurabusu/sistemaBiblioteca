@@ -24,7 +24,7 @@
         </nav>
         <div class="navbar float-right">
              <ul  class="nav ">
-                 <li class="nav-item"><label class="nav-link"> Usuario: <?= $usuario["nombres"]." ".$usuario["apellidos"];?> </label></li>
+                 <li class="nav-item"><label class="nav-link"> Usuario: <button class="btn btn-link" id="btnMisDatos" data-toggle="modal" data-target="#modalModificarDatos"><?= $usuario["nombres"]." ".$usuario["apellidos"];?></button></li>
                  <li class="nav-item"><a href="index.php?action=logout" class="nav-link text-danger">Desconectar</a></li>
             </ul>
         </div>
