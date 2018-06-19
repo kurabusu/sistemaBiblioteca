@@ -130,6 +130,11 @@ $(document).ready(function () {
     })
     
     $("#btnGuardarNuevaReserva").on("click", function () {
+        var v = $("#formNuevaReserva").valid();
+        if(!v){
+            return false;
+        }
+         
         idPer = $("#modalNuevoReserva #mnrUsuario").attr("attr-id");
         idLibro = $("#modalNuevoReserva #mnrLibro").attr("attr-id");
         

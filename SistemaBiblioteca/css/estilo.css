@@ -1,1 +1,9 @@
 
+label.error{
+    color: red;
+}
+
+.form-inline label.error{
+    position: absolute;
+    margin-top: 27px;
+}
