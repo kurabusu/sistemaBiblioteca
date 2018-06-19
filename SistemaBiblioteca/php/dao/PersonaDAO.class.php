@@ -75,7 +75,8 @@ class PersonaDAO {
 
     public function ObtenerPorId($id) {
         $arUser = array();
-        $query = "SELECT id, rut, nombres, apellidos, email, telefono, estado from persona where id=?";
+        $query = "SELECT p.id, p.rut, p.nombres, p.apellidos, p.email, p.telefono, p.estado, u.perfil_id from persona p"
+                ." JOIN usuario u on p.id=u.persona_id where p.id=?";
         
         $preparedStatement = $this->conexion->prepare($query);
         if ($preparedStatement != false){
@@ -90,7 +91,7 @@ class PersonaDAO {
                         $row['email'],
                         $row['telefono'],
                         $row['estado'],
-                        0,
+                        $row['perfil_id'],
                         0);
                 array_push($arUser, $persona);
             }
@@ -157,8 +158,37 @@ class PersonaDAO {
         }
     }
 
+    /**
+     * @param Persona $element
+     */
     public function update($element) {
+        $query = "update persona set nombres=?, apellidos=?, email=?, telefono=? where id=?";
+        $resultado = 0;
         
+        $prepareStatement =$this->conexion->prepare($query);
+        if($prepareStatement!==false){
+            $nombres = $element->getNombres();
+            $prepareStatement->bindParam(1,$nombres);
+            
+            $apellidos = $element->getApellidos();
+            $prepareStatement->bindParam(2,$apellidos);
+            
+            $email = $element->getEmail();
+            $prepareStatement->bindParam(3,$email);
+            
+            $telefono = $element->getTelefono();
+            $prepareStatement->bindParam(4,$telefono);
+            
+            $id = $element->getId();
+            $prepareStatement->bindParam(5,$id);
+            
+            $prepareStatement->execute();
+            
+        }else{
+            throw new Exception('no se pudo preparar la consulta a la base de datos: '.$this->conexion->error);
+            return -1;
+        }
+        return $resultado;
     }
 
 }
