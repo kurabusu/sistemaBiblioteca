@@ -7,7 +7,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $personaDAO = new PersonaDAO();
     $resultado = $personaDAO->ObtenerLogin($_POST["email"], $_POST["clave"]);
     if (count($resultado)==0){
-        echo "Usuario o clave inválida";
+        echo '<div class="row justify-content-md-center"><div class="col-3"><div class="alert alert-danger text-center" role="alert">Usuario o clave inválida</div></div></div>';
     }else{
         session_start();
         $_SESSION["usuario"] = $resultado;
@@ -24,7 +24,7 @@ if($_SERVER["REQUEST_METHOD"]=='GET' && isset($_GET["action"]) && $_GET["action"
        <form action="index.php" method="POST">
            <div class="form-group">
                <label>E-Mail</label>    
-               <input id="" class="form-control" type="email" id="email" name="email" value="" placeholder="Email" />
+               <input id="" class="form-control" type="text" id="email" name="email" value="" placeholder="Email" />
            </div>
            <div class="form-group">
                <label>Clave</label>    
