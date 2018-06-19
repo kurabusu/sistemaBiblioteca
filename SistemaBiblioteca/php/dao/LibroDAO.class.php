@@ -111,7 +111,7 @@ class LibroDAO {
     public function obtener($data){
         $arUser = array();
         $query= "SELECT l.id, l.isbn, l.titulo, l.autor, l.editorial, l.annio,"
-                . " l.cantidad, l.categoria_id, c.id, c.codigo, c.descripcion"
+                . " l.cantidad, l.categoria_id, c.id as 'idcategoria', c.codigo, c.descripcion"
                 . " FROM libro l "
                 . " LEFT JOIN categoria c ON c.id = l.categoria_id";
         
@@ -135,15 +135,12 @@ class LibroDAO {
             if($query2 != '') $query2.=" or ";
             $query2 .= " l.editorial like concat(?,'%')";
         }
-        
-        
-                       
+              
         if($query2 != ''){
-            $query .= " WHERE ". $query2;
-            
+            $query .= " WHERE ". $query2;    
         }      
        
-         $preparedStatement = $this->conexion->prepare($query);
+        $preparedStatement = $this->conexion->prepare($query);
         if($preparedStatement != false){
             $i = 1;
             if($data->getIsbn() != null){
@@ -166,11 +163,9 @@ class LibroDAO {
                 $preparedStatement->bindParam($i++,$edi);
             } 
 
-         
-            
             $preparedStatement->execute();
             foreach ($preparedStatement->fetchAll(PDO::FETCH_ASSOC) as $row){
-                $categoria = new Categoria($row['id'],$row['codigo'], $row['descripcion']);
+                $categoria = new Categoria($row['idcategoria'],$row['codigo'], $row['descripcion']);
                 $libro = new Libro($row['id'],
                         $row['isbn'],
                         $row['titulo'],

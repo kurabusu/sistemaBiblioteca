@@ -38,6 +38,15 @@ $(document).ready(function(){
        $('.modal-body input').val("");
     });
     
+    $("#btnaceptarCambios").click(function(){
+       $("#modalModificar").modal('hide');
+       $('.modal-body input').val("");   
+    });
+    
+    $("#btnModifi").click(function(){
+        $("#modalConfirmarNuevo").modal('show');
+    });
+    
     $("#btnGuardarLibro").on("click", function(){
         console.log("Ingresando nuevo Libro");
         $.ajax({
@@ -61,19 +70,21 @@ $(document).ready(function(){
             url: "php/controladores/LibroModificar.php",
             method: "PUT",
             dataType: "JSON",
-            data: { 'id': $("idM").val(), 'isbn':$("#isbnM").val(), 'titulo': $("#tituloM").val(),
+            data: { 'id': $("#idM").val(), 'isbn':$("#isbnM").val(), 'titulo': $("#tituloM").val(),
                 'autor':$("#autorM").val(), 'editorial':$("#editorialM").val(),
                 'anno':$("#annoM").val(), 'categoria':$("#categoriaM").val(), 'cantidad':$("#cantidadM").val()
             },
             success : function (data, textStatus, jqXHR) {
                 arr = data;
-                console.log(arr)
-                if(arr.resultado == 1){
+                console.log(arr);
+                if(arr.resultado === 1){
                     console.log("bien");
-                    
+                    $("#modalModificarMensaje").modal('show');   
                 }else{
                     console.log("mal");
-                }    
+                    $("#modalMensajeErrores p").html(arr.resultado);
+                    $("#modalMensajeErrores").modal('show');
+               }
             }
         });
     });

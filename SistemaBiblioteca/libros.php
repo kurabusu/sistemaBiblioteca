@@ -191,10 +191,51 @@ include('php/base/menu.php');
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCancelarM">Cancelar</button>
-        <button type="button" class="btn btn-success" id="btnGuardaCambio">Modificar</button>
+        <button type="button" class="btn btn-success" id="btnModifi">Modificar</button>
       </div>
     </div>
   </div>
+</div>
+
+<!-- Modal confirmar modificacion -->
+<div class="modal fade" id="modalConfirmarNuevo" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar Libro</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Guardar cambios en este Libro?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" id="btnGuardaCambio">Si</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- mensaje modificar -->
+<div class="modal fade" id="modalModificarMensaje" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modificar libro</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Se ha modificado la informaci&oacute;n del Libro correctamente.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" type="button" data-dismiss="modal" id="btnaceptarCambios">Aceptar</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Modal desactivar / activar -->
@@ -229,46 +270,6 @@ include('php/base/menu.php');
             </div>
             <div class="modal-body">
                 <p>El libro ha sido eliminado</p>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal confirmar modificacion -->
-<div class="modal fade" id="modalConfirmarNuevo" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" >
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Editar Libro</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>¿Guardar cambios en este Libro?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                <button type="button" class="btn btn-success" data-dismiss="modal" id="btnConfirmarNuevo">Si</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- mensaje modificar -->
-<div class="modal fade" id="modalModificarMensaje" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" >
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modificar libro</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Se ha modificado la informaci&oacute;n del Libro correctamente.</p>
             </div>
             <div class="modal-footer">
             </div>
