@@ -56,6 +56,16 @@ function ActualizarPersona(){
     $usuarioDAO = new UsuarioDAO();
     $u = $usuarioDAO->update($usuario);
     
+    if(isset($put["actualizarsesion"]) && $put["actualizarsesion"]=="si"){
+        session_start();
+        $usuario = $_SESSION["usuario"];
+        $usuario["nombres"]=$put["nombres"];
+        $usuario["apellidos"]=$put["apellidos"];
+        $usuario["email"]=$put["email"];
+        $usuario["telefono"]=$put["telefono"];
+        $_SESSION["usuario"] = $usuario;
+    }
+    
     return array("resultado"=>$u);
     
     

@@ -271,7 +271,7 @@ include('php/base/menu.php');
                 </button>
             </div>
             <div class="modal-body">
-                <p>¿Está seguro de modificar la contrase&ntilde;a del usuario?</p>
+                <p>¿Est&aacute; seguro de modificar la contrase&ntilde;a del usuario?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
