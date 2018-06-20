@@ -6,13 +6,16 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     
     $personaDAO = new PersonaDAO();
     $resultado = $personaDAO->ObtenerLogin($_POST["email"], $_POST["clave"]);
-    echo ($resultado);
     if ($resultado==false){
         echo '<div class="row justify-content-md-center"><div class="col-3"><div class="alert alert-danger text-center" role="alert">Usuario o clave inválida</div></div></div>';
     }else{
-        session_start();
-        $_SESSION["usuario"] = $resultado;
-        header("Location:bienvenido.php");
+        if ($resultado["estado"]==1){
+            session_start();
+            $_SESSION["usuario"] = $resultado;
+            header("Location:bienvenido.php");            
+        }else if($resultado["estado"]==2){
+            echo '<div class="row justify-content-md-center"><div class="col-6"><div class="alert alert-warning text-center" role="alert">Su cuenta se encuentra bloqueada. Acerquese al bibliotecario para m&aacute;s informaci&oacute;n.</div></div></div>';
+        }
     }
 }
 if($_SERVER["REQUEST_METHOD"]=='GET' && isset($_GET["action"]) && $_GET["action"]=="logout"){
