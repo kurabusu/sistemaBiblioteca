@@ -6,7 +6,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     
     $personaDAO = new PersonaDAO();
     $resultado = $personaDAO->ObtenerLogin($_POST["email"], $_POST["clave"]);
-    if (count($resultado)==0){
+    echo ($resultado);
+    if ($resultado==false){
         echo '<div class="row justify-content-md-center"><div class="col-3"><div class="alert alert-danger text-center" role="alert">Usuario o clave inválida</div></div></div>';
     }else{
         session_start();

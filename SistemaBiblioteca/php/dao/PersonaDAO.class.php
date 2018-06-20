@@ -106,7 +106,7 @@ class PersonaDAO {
                 if (password_verify($clave, $password)){
                     return $arUser;
                 }else{
-                    return null;
+                    return false;
                 }                
                 
             }
