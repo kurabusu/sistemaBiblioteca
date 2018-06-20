@@ -92,6 +92,11 @@ class ReservaDAO {
             $query2 .= " r.fecha_reserva like concat(?,'%') ";
         }
         
+        if($data->getPersona()->getId() != null){
+            if($query2 != '') $query2 .=" or "; 
+            $query2 .= " p.id like concat(?,'%') ";
+        }
+        
         if($data->getPersona()->getNombres() != null){
             if($query2 != '') $query2 .=" or ";
             $query2 .= " p.nombres like concat(?,'%') ";
@@ -118,9 +123,14 @@ class ReservaDAO {
             $i = 1;
             if($data->getFecha_reserva() != null){
                 $fecha = $data->getFecha_reserva();
-                $preparedStmt->bindParam($i++, $fecha);
+                $preparedStmt->bindParam($i++, $fecha); 
             }
 
+            if($data->getPersona()->getId() != null){
+                $id = $data->getPersona()->getId();
+                $preparedStmt->bindParam($i++, $id);
+            }
+            
             if($data->getPersona()->getNombres() != null){
                 $nomb = $data->getPersona()->getNombres();
                 $preparedStmt->bindParam($i++, $nomb);
