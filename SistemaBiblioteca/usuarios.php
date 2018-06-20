@@ -1,6 +1,13 @@
 <?php
 include('php/base/header.php');
 include('php/base/menu.php');
+
+if($usuario["perfil_id"] !== 1){ ?>
+    <script>
+        location.href ="bienvenido.php";
+    </script>
+<?php } ?>
+
 ?>
 <script src="js/Persona.js" type="text/javascript" ></script>
 <div class="row mt-2">

@@ -1,7 +1,14 @@
 <?php
 include('php/base/header.php');
 include('php/base/menu.php');
-?>
+
+if($usuario["perfil_id"] !== 4){
+    
+ ?>
+    <script>
+        location.href ="bienvenido.php";
+    </script>
+<?php } ?>
 <script src="js/reserva.js"></script>
 <div class="row mt-2">
     <div class="col form-inline">
