@@ -35,7 +35,7 @@ include('php/base/menu.php');
                 <tr>
                     <th> Nombre persona</th>
                     <th> Titulo libro</th>
-                    <th> Fecha</th>
+                    <th> Reservado hasta</th>
                     <th> Opciones</th>
                 </tr>
             </thead>

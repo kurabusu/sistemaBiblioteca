@@ -2,8 +2,9 @@
 include('php/base/header.php');
 include('php/base/menu.php');
 ?>
+<script src="js/bienvenido.js"></script>
 <div class="row mt-2">
-    <div class="col">
+    <div class="col">  
         <h2 class="h2">Bienvenido</h2>
     </div>
 </div>
@@ -12,41 +13,59 @@ include('php/base/menu.php');
     <div class="col">
         <p>Sistema de biblioteca</p>
         <?php if($usuario["perfil_id"] == 3 ){ ?>
-            <h3 class="h3">Reservas</h3>
-            <table class="tabReservas">
-                <thead>
-                    <tr>
-                        <th> Titulo libro</th>
-                        <th> Fecha</th>
-                    </tr>
-                </thead>
-                <tfoot> 
-                    <tr>
-                        <td colspan="7"></td>
-                    </tr>
-                </tfoot>
-                <tbody id="grilla">
-                </tbody>
-            </table>
+            <div class="row">
+                <div class="col">
+                    <h3 class="h3">Mis reservas actuales</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <table id="tabReservas" class="table">
+                        <thead>
+                            <tr>
+                                <th> Titulo libro</th>
+                                <th> Reservado hasta</th>
+                            </tr>
+                        </thead>
+                        <tfoot> 
+                            <tr>
+                                <td colspan="7"></td>
+                            </tr>
+                        </tfoot>
+                        <tbody class="grilla">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         <?php }?>
         
         <?php if($usuario["perfil_id"] == 3 || $usuario["perfil_id"] ==4){ ?>
-            <h3 class="h3">Pedidos</h3>
-            <table class="tabPedidos">
-                 <thead>
-                    <tr>
-                        <th> Titulo libro</th>
-                        <th> Fecha</th>
-                    </tr>
-                </thead>
-                <tfoot>
-                    <tr>
-                        <td colspan="7"></td>
-                    </tr>
-                </tfoot>
-                <tbody id="grilla">
-                </tbody>
-            </table>
+            <div class="row">
+                <div class="col">
+                    <h3 class="h3">Mis pedidos actuales</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <table id="tabPedidos" class="table">
+                         <thead>
+                            <tr>
+                                <th> Titulo libro</th>
+                                <th> Fecha Entrega</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7"></td>
+                            </tr>
+                        </tfoot>
+                        <tbody class="grilla">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        
+                
         <?php }?>
         
     </div>

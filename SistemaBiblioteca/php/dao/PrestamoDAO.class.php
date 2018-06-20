@@ -95,6 +95,11 @@ class PrestamoDAO {
             $query2 .= " pr.fecha_entrega like concat(?,'%') ";
         }
         
+        if($data->getPersona()->getId() != null){
+            if($query2 != '') $query2 .=" or ";
+            $query2 .= " p.id like concat(?,'%') ";
+        }
+        
         if($data->getPersona()->getNombres() != null){
             if($query2 != '') $query2 .=" or ";
             $query2 .= " p.nombres like concat(?,'%') ";
@@ -124,6 +129,11 @@ class PrestamoDAO {
                 $preparedStmt->bindParam($i++, $fecha);
             }
 
+            if($data->getPersona()->getId() != null){
+                $id = $data->getPersona()->getId();
+                $preparedStmt->bindParam($i++, $id);
+            }
+            
             if($data->getPersona()->getNombres() != null){
                 $nomb = $data->getPersona()->getNombres();
                 $preparedStmt->bindParam($i++, $nomb);
