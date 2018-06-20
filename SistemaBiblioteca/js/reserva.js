@@ -194,8 +194,10 @@ $(document).ready(function () {
    
     function listar(){
         console.log("----- listar ---------");
+        idPe = $("#btnMisDatos").attr("attr-perfil");
+        idU = $("#btnMisDatos").attr("attr-id");
+        busq = $("#txtBuscar").val();
         $("#grilla").html("");
-        busq = $("#txtBuscar").val(); 
         
         $.ajax({
             url: "php/controladores/ReservaObtener.php", 
@@ -204,7 +206,7 @@ $(document).ready(function () {
             data:{
                 'fechaReserva': busq,
                 'libro': busq,
-                'persona':busq
+                'persona':(idPe == 3? idU: busq)
             },
             success: function (data, textStatus, jqXHR) {
                 arr = data, //JSON.parse(data);
