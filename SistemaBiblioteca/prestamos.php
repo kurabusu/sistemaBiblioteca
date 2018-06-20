@@ -1,11 +1,11 @@
 <?php
 include('php/base/header.php');
 include('php/base/menu.php');
-if($usuario["perfil_id"] !== 1 && $usuario["perfil_id"] !== 2){ ?>
+if($usuario["perfil_id"] != 1 && $usuario["perfil_id"] != 2){ ?>
     <script>
         location.href ="bienvenido.php";
     </script>
-<?php } ?>?>
+<?php } ?>
 <script src="js/prestamos.js"></script>
 <div class="row mt-2">
     <div class="col form-inline">

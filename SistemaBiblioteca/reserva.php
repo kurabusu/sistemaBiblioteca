@@ -2,7 +2,7 @@
 include('php/base/header.php');
 include('php/base/menu.php');
 
-if($usuario["perfil_id"] !== 4){
+if($usuario["perfil_id"] == 4){
     
  ?>
     <script>
