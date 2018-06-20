@@ -65,8 +65,10 @@ include('php/base/menu.php');
           <form id="formNuevaReserva">
                 <label for="mnrUsuario">Usuario: </label>
                 <div class="form-inline mb-3">
-                    <input class="form-control col-9" id="mnrUsuario" type="text" name="mnrUsuario" value="" readonly />
+                    <input class="form-control col-9" id="mnrUsuario" type="text" name="mnrUsuario" value="<?=$usuario["nombres"]." ".$usuario["apellidos"]?>" attr-id="<?=$usuario["id"]?>" readonly />
+                    <?php if($usuario["perfil_id"] == 1 || $usuario["perfil_id"] == 2){?>
                     <button type="button" class="btn btn-info col-2 ml-2"  data-toggle="modal" data-target="#modalBuscarUsarios">Buscar</button>
+                    <?php }?>
                 </div>
                 <label for="mnrLibro">Libro: </label>
                 <div class="form-inline mb-3">
@@ -125,7 +127,7 @@ include('php/base/menu.php');
                     <label>Libro: </label>
                     <input class="form-control col-9" id="mnpLibro" type="text" name="libro" value="" readonly />
                 </div>
-          </form>
+          </form> 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

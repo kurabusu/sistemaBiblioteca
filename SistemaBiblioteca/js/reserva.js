@@ -194,8 +194,10 @@ $(document).ready(function () {
    
     function listar(){
         console.log("----- listar ---------");
+        idPe = $("#btnMisDatos").attr("attr-perfil");
+        idU = $("#btnMisDatos").attr("attr-id");
+        busq = $("#txtBuscar").val();
         $("#grilla").html("");
-        busq = $("#txtBuscar").val(); 
         
         $.ajax({
             url: "php/controladores/ReservaObtener.php", 
@@ -204,20 +206,23 @@ $(document).ready(function () {
             data:{
                 'fechaReserva': busq,
                 'libro': busq,
-                'persona':busq
+                'persona':(idPe == 3? idU: busq)
             },
             success: function (data, textStatus, jqXHR) {
                 arr = data, //JSON.parse(data);
                 lista = arr.resultado;
                 $.each(arr.resultado, function(index, value){
-                    $("#grilla").append('<tr>'
+                    h = '<tr>'
                     + '<td>'+value.persona.nombres+' '+value.persona.apellido+'</td>'
                     + '<td>'+value.libro.titulo+'</td>'
                     + '<td>'+value.fechaReserva+'</td>'
-                    + '<td>'
-                    + '    <button type="button" class="btn btn-info btnReservaPrestamo" data-toggle="modal" attr-index="'+index+'" data-target="#modalNuevoPrestamo">Prestar</button>'
-                    + '    <button type="button" class="btn btn-danger btnReservaCancelar" data-toggle="modal" attr-index="'+index+'" data-target="#modalReservaEliminar">Eliminar</button>'
-                    + '</td></tr>');
+                    + '<td>';
+                    if(idPe == 1 || idPe == 2){
+                        h += '<button type="button" class="btn btn-info btnReservaPrestamo" data-toggle="modal" attr-index="'+index+'" data-target="#modalNuevoPrestamo">Prestar</button>'
+                        + '<button type="button" class="btn btn-danger btnReservaCancelar" data-toggle="modal" attr-index="'+index+'" data-target="#modalReservaEliminar">Eliminar</button>'
+                    }
+                    h += '</td></tr>';
+                    $("#grilla").append(h);
                 });
                 
                 $(".btnReservaCancelar").on("click", function () {

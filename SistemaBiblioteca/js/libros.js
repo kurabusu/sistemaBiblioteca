@@ -238,6 +238,7 @@ $(document).ready(function(){
     
     //busqueda, modificacion, prestamo y eliminar
     function busqueda(){
+       idPe = $("btnMisDatos").attr("attr-perfil");
        $metodoBusqueda = $('#cmboBuscar').val();
        $palabraBusqueda = $('#txtBuscar').val();
        console.log("Buscando Libros segun clave");
@@ -274,7 +275,7 @@ $(document).ready(function(){
                 arr = data;
                 listaLibros= arr.resultado;
                 $.each(arr.resultado, function(key, value){
-                    $("#grillaLibro").append('<tr>'
+                    h = '<tr>'
                     +'<td>'+value.isbn+'</td>'
                     +'<td>'+value.titulo+'</td>'
                     +'<td>'+value.autor+'</td>'
@@ -282,10 +283,13 @@ $(document).ready(function(){
                     +'<td>'+value.año+'</td>'
                     +'<td>'+value.cantidad+'</td>'
                     +'<td>'+value.categoria.descripcion+'</td>'
-                    +'<td>'
-                    +'<button type="button" class="btn btn-info btnPrestamo" data-toggle="modal" data-target="#modalNuevoPrestamo" attr-index="'+key+'" >Prestamo</button>'
-                    +'<button type="button" class="btn btn-warning ml-2 mr-2 btnModi" data-toggle="modal" data-target="#modalModificar" attr-index="'+key+'">Modificar</button>'
-                    +'</td></tr>');   
+                    +'<td>';
+                    if(idPe == 1 || idPe == 2){
+                        h += '<button type="button" class="btn btn-info btnPrestamo" data-toggle="modal" data-target="#modalNuevoPrestamo" attr-index="'+key+'" >Prestamo</button>'
+                        +'<button type="button" class="btn btn-warning ml-2 mr-2 btnModi" data-toggle="modal" data-target="#modalModificar" attr-index="'+key+'">Modificar</button>'
+                    }
+                    h +='</td></tr>';  
+                    $("#grillaLibro").append(h);
                 }); 
 
                 $('.btnModi').on("click", function(){

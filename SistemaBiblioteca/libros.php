@@ -7,8 +7,10 @@ include('php/base/menu.php');
 
 <div class="row mt-2">
     <div class="col form-inline">
-        <h2 class="h2">Libros</h2>  
+        <h2 class="h2">Libros</h2>   
+        <?php if($usuario["perfil_id"]==1 || $usuario["perfil_id"]==2){?>
         <button class="ml-5 btn btn-success text-white" data-toggle="modal" data-target="#modalNuevo">Nuevo libro</button>
+        <?php }?>
     </div>
 </div>
 

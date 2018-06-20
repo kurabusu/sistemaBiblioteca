@@ -18,6 +18,7 @@ function reservaObtener(){
     }
     
     if(isset($_GET["persona"]) && strlen($_GET["persona"]) > 0){
+        $persona->setId($_GET["persona"]);
         $persona->setNombres($_GET["persona"]);
         $persona->setApellidos($_GET["persona"]);
     }
