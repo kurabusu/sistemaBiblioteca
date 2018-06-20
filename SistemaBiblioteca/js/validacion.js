@@ -172,8 +172,8 @@ $(document).ready(function(){
                 required: true
             },
             clave2: {
-                required: true,
-                password_again: "#clave1"
+                required: true
+              
             },
             tipoperfil: {
                 required: true
@@ -202,7 +202,6 @@ $(document).ready(function(){
             },
             clave2: {
                 required: "La clave es requerida.",
-                password_again: "Las claves son distintas."
             },
             tipoperfil: {
                 required: "El perfil es requerido."
@@ -234,8 +233,8 @@ $(document).ready(function(){
                 required: true
             },
             clave2: {
-                required: true,
-                password_again: "#clave1"
+                required: true
+                
             },
             tipoperfil: {
                 required: true
@@ -263,8 +262,8 @@ $(document).ready(function(){
                 required: "La clave es requerida."
             },
             clave2: {
-                required: "La clave es requerida.",
-                password_again: "Las claves son distintas."
+                required: "La clave es requerida."
+                
             },
             tipoperfil: {
                 required: "El perfil es requerido."
