@@ -238,7 +238,8 @@ $(document).ready(function(){
     
     //busqueda, modificacion, prestamo y eliminar
     function busqueda(){
-       idPe = $("btnMisDatos").attr("attr-perfil");
+       idPe = $("#btnMisDatos").attr("attr-perfil");
+       conse
        $metodoBusqueda = $('#cmboBuscar').val();
        $palabraBusqueda = $('#txtBuscar').val();
        console.log("Buscando Libros segun clave");

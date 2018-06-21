@@ -126,7 +126,7 @@ if($usuario["perfil_id"] != 1){ ?>
                   <div class="col-6">
                     <div class="form-group">
                         <label>Tel&eacute;fono: </label>
-                        <input class="form-control" id="telefonom" type="text" name="telefono" value=""  />
+                        <input class="form-control" id="telefonom" type="number" name="telefono" value=""  />
                     </div>
                     <div class="form-group">
                         <label>Perfil: </label>
@@ -181,7 +181,7 @@ if($usuario["perfil_id"] != 1){ ?>
                   <div class="col-6">
                     <div class="form-group">
                         <label>Tel&eacute;fono: </label>
-                        <input class="form-control" id="telefono" type="text" name="telefono" value=""  />
+                        <input class="form-control" id="telefono" type="number" name="telefono" value=""  />
                     </div>
                     <div class="form-group">
                         <label>Contrase&ntilde;a: </label>

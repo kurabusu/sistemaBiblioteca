@@ -166,7 +166,8 @@ $(document).ready(function(){
                 email: true
             },
             telefono: {
-                required: true
+                required: true,
+                number: true
             },
             clave1: {
                 required: true
@@ -195,7 +196,8 @@ $(document).ready(function(){
                 email: "Email no válido."
             },
             telefono: {
-                required: "El teléfono es requerido."
+                required: "El teléfono es requerido.",
+                number: "Teléfono debe ser númerico."
             },
             clave1: {
                 required: "La clave es requerida."
@@ -227,7 +229,8 @@ $(document).ready(function(){
                 email: true
             },
             telefono: {
-                required: true
+                required: true,
+                number: true
             },
             clave1: {
                 required: true
@@ -256,7 +259,8 @@ $(document).ready(function(){
                 email: "Email no válido."
             },
             telefono: {
-                required: "El teléfono es requerido."
+                required: "El teléfono es requerido.",
+                number: "Teléfono debe ser numérico."
             },
             clave1: {
                 required: "La clave es requerida."

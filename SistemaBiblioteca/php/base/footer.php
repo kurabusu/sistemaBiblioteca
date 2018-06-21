@@ -58,7 +58,7 @@
                   <div class="col-6">
                     <div class="form-group">
                         <label>Tel&eacute;fono: </label>
-                        <input class="form-control" id="telefonousuario" type="text" name="telefono" value="<?=$usuario["telefono"];?>"  />
+                        <input class="form-control" id="telefonousuario" type="number" name="telefono" value="<?=$usuario["telefono"];?>"  />
                     </div>                      
                   </div>
               </div>
